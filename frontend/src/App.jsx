@@ -5,9 +5,7 @@ import Home from "./pages/Home";
 import AppLayout from "./components/AppLayout";
 import Movie from "./pages/Movie";
 import TvShow from "./pages/TvShow";
-import MovieOrTvDetails, {
-  loader as loaderMovieOrTVShow,
-} from "./pages/MovieOrTvDetails";
+
 import MovieDetails, { loader as loaderMovie } from "./pages/MovieDetails";
 import TvShowDetails, { loader as loaderTvShow } from "./pages/TvShowDetails";
 

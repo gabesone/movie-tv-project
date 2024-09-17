@@ -14,6 +14,7 @@ function OverviewTvShow({ mediaData }) {
     language,
     network,
     posterPath,
+    title,
   } = mixTvShowData(mediaData);
 
   console.log(creator);
@@ -22,7 +23,7 @@ function OverviewTvShow({ mediaData }) {
 
   return (
     <div className="ml-16 grid grid-cols-[20rem_1fr] gap-12 text-gray-100">
-      <PosterBig posterPath={posterPath} />
+      <PosterBig posterPath={posterPath} posterName={title} />
       <div className="flex flex-col">
         <h2 className="mb-4 text-2xl font-medium">Storyline</h2>
         <p className="font-medium">{mediaData.overview}</p>

@@ -1,5 +1,6 @@
-import { mixOverviewData } from "../helpers/mixData";
+import { mixMovieData } from "../helpers/mixData";
 import ItemList from "./ItemList";
+import { PosterBig } from "./Posters";
 
 function OverviewMovie({ mediaData }) {
   const {
@@ -12,13 +13,15 @@ function OverviewMovie({ mediaData }) {
     status,
     language,
     production,
-  } = mixOverviewData(mediaData);
+    posterPath,
+    title,
+  } = mixMovieData(mediaData);
 
   console.log(production);
 
   return (
     <div className="ml-16 grid grid-cols-[20rem_1fr] gap-12 text-gray-100">
-      <img src="../posterTest.jpg" alt="" />
+      <PosterBig posterPath={posterPath} posterName={title} />
       <div className="flex flex-col">
         <h2 className="mb-4 text-2xl font-medium">Storyline</h2>
         <p className="font-medium">{mediaData.overview}</p>

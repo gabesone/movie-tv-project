@@ -8,6 +8,9 @@ export function PosterBig({ posterPath, posterName }) {
   console.log(posterPath);
 
   return (
-    <img src={`${TMDB_IMAGE_POSTER_URL}/${posterPath}`} alt={posterName} />
+    <img
+      src={`${TMDB_IMAGE_POSTER_URL}/${posterPath}`}
+      alt={`Poster of ${posterName}`}
+    />
   );
 }

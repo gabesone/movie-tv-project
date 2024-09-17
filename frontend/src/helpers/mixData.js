@@ -11,7 +11,7 @@ export function mixData(mediaData) {
   return { id, backdrop, description, year, rating, title };
 }
 
-export function mixOverviewData(mediaData) {
+export function mixMovieData(mediaData) {
   const released = mediaData.release_date
     ? mediaData.release_date
     : mediaData.first_air_date;
@@ -29,6 +29,8 @@ export function mixOverviewData(mediaData) {
   const production = mediaData.production_companies
     ? mediaData.production_companies
     : "";
+  const posterPath = mediaData.poster_path ? mediaData.poster_path : "";
+  const title = mediaData.title ? mediaData.title : "";
 
   return {
     released,
@@ -40,6 +42,8 @@ export function mixOverviewData(mediaData) {
     status,
     language,
     production,
+    posterPath,
+    title,
   };
 }
 
@@ -60,6 +64,7 @@ export function mixTvShowData(mediaData) {
     : "";
   const network = mediaData.networks ? mediaData.networks : "";
   const posterPath = mediaData.poster_path ? mediaData.poster_path : "";
+  const title = mediaData.name ? mediaData.name : "";
 
   return {
     startDate,
@@ -72,5 +77,6 @@ export function mixTvShowData(mediaData) {
     language,
     network,
     posterPath,
+    title,
   };
 }

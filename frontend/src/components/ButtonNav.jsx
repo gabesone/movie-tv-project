@@ -2,7 +2,7 @@ import { NavLink } from "react-router-dom";
 
 function ButtonNav({ children, path }) {
   return (
-    <li>
+    <li className="text-2xl">
       <NavLink
         to={path}
         className={({ isActive }) =>
