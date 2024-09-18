@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { SlControlPlay } from "react-icons/sl";
 
-import { mixData } from "../helpers/mixData";
+import { mixHeroData } from "../helpers/mixData";
 import Loading from "./Loading";
 
 const TMDB_IMAGE_HERO_URL = "https://image.tmdb.org/t/p/original";
@@ -9,7 +10,7 @@ const TMDB_IMAGE_HERO_LESS_URL = "https://image.tmdb.org/t/p/w500";
 
 function Hero({ media, mediaType }) {
   const [matchWidth, setMatchWidth] = useState(null);
-  const { id, backdrop, description, title, rating, year } = mixData(media);
+  const { id, backdrop, description, title, rating, year } = mixHeroData(media);
 
   // Look at window.matchMedia
   const matchMedia = window.matchMedia("(min-width: 1024px)");
@@ -51,9 +52,7 @@ function Hero({ media, mediaType }) {
                 height: "100%",
                 width: "71.1%",
               }}
-            >
-              backdrop
-            </div>
+            ></div>
 
             {/* Movie or Tv Show details */}
             <div
@@ -77,17 +76,22 @@ function Hero({ media, mediaType }) {
 
               {/* Description */}
               <div className="font-medium">{description}</div>
-              <div className="">button</div>
+              <div className="">
+                <button className="flex items-center gap-2 bg-gray-800 px-6 py-2 font-semibold transition-colors duration-300 hover:bg-gray-700">
+                  <SlControlPlay />
+                  Watch Trailer
+                </button>
+              </div>
             </div>
           </div>
         </>
       )}
 
-      {/* Hero on less the 1024px */}
+      {/* Hero on less then 1024px */}
       {matchWidth === false && (
         <>
           {/* Render when matchWidth is less then 1024px */}
-          <div className="fadeIn relative h-full pb-[50%]">
+          <div className="fadeIn relative h-full pb-[45%]">
             <div
               className="bg-center"
               style={{
@@ -102,14 +106,14 @@ function Hero({ media, mediaType }) {
               }}
             >
               {/* Play icon */}
-              <div className="flex h-full flex-col items-center justify-center text-2xl font-medium text-black">
-                Play Icon
+              <div className="flex h-full flex-col items-center justify-center text-4xl font-extrabold md:text-5xl">
+                <SlControlPlay />
               </div>
             </div>
           </div>
 
           {/* Movie or Tv Show details */}
-          <div className="flex flex-col space-y-2 p-4">
+          <div className="flex flex-col space-y-2 px-4 pb-4 md:px-8 md:pb-8">
             {/* Title of Movie or Tv */}
             {mediaType ? (
               <Link to={`/${mediaType}/${id}`} className="w-fit">

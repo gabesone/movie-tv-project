@@ -48,7 +48,7 @@ function OverviewTvShow({ mediaData }) {
               <ItemList>{startDate}</ItemList>
               <ItemList>{finishDate}</ItemList>
 
-              <div>
+              <div className="flex flex-wrap gap-2">
                 {creator?.map((person) => (
                   <ItemList
                     key={person.id}

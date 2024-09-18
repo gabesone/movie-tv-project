@@ -1,14 +1,27 @@
-export function mixData(mediaData) {
-  const id = mediaData.id;
+export function mixHeroData(mediaData) {
   const title = mediaData.title ? mediaData.title : mediaData.name;
-  const description = mediaData.overview;
-  const backdrop = mediaData.backdrop_path;
   const year = mediaData.release_date
     ? mediaData.release_date.slice(0, 4)
     : mediaData.first_air_date.slice(0, 4);
-  const rating = mediaData.vote_average.toFixed(1);
+  const rating = mediaData.vote_average
+    ? mediaData.vote_average.toFixed(1)
+    : "";
+  const id = mediaData.id ? mediaData.id : "";
+  const backdrop = mediaData.backdrop_path ? mediaData.backdrop_path : "";
 
-  return { id, backdrop, description, year, rating, title };
+  const desc = mediaData.overview ? mediaData.overview : "";
+
+  const description =
+    desc.length <= 150 ? desc : desc.slice(0, 150).replace(/\s$/) + "...";
+
+  return {
+    title,
+    year,
+    rating,
+    id,
+    backdrop,
+    description,
+  };
 }
 
 export function mixMovieData(mediaData) {

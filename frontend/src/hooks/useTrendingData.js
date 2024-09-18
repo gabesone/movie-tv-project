@@ -5,16 +5,16 @@ import { getTrendingTVShows } from "../services/apiTVShow";
 
 export function useTrendingData() {
   // Fetching TrendingMovie and TrendingTvShow API
-  const trendingMoviesQuery = useQuery({
-    queryKey: ["trendingMovies"],
+  const trendingMovieQuery = useQuery({
+    queryKey: ["trendingMovie"],
     queryFn: getTrendingMovies,
     staleTime: 1000 * 60 * 60 * 24 * 7,
   });
-  const TrendingTVShowQuery = useQuery({
-    queryKey: ["trendingTVShow"],
+  const trendingTvShowQuery = useQuery({
+    queryKey: ["trendingTvShow"],
     queryFn: getTrendingTVShows,
     staleTime: 1000 * 60 * 60 * 24 * 7,
   });
 
-  return { trendingMoviesQuery, TrendingTVShowQuery };
+  return { trendingMovieQuery, trendingTvShowQuery };
 }
