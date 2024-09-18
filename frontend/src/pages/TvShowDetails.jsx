@@ -41,7 +41,7 @@ function TvShowDetails() {
               <OverviewTvShow mediaData={tvShowData} />
             )}
             {selected === "videos" && <VideosItem />}
-            {selected === "photos" && <PhotosItem />}
+            {selected === "photos" && <PhotosItem images={tvShowData.images} />}
           </div>
         </div>
       </div>

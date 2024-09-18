@@ -13,7 +13,7 @@ body {
 }
 
 .fadeIn {
-  animation: fadeOut 0.8s ease-in;
+  animation: fadeOut 1s ease-in;
 }
 
 @keyframes fadeOut {
@@ -23,4 +23,16 @@ body {
   100% {
     opacity: 1;
   }
+}
+
+.backdropTest {
+  background-image: linear-gradient(
+    90deg,
+    #000 0,
+    transparent 50%,
+    transparent
+  );
+  width: 100%;
+  height: 100%;
+  background-size: contain;
 }

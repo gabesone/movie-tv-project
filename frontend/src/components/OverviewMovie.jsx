@@ -1,4 +1,5 @@
 import { mixMovieData } from "../helpers/mixData";
+import { OverviewPoster } from "./Images";
 import ItemList from "./ItemList";
 import { PosterBig } from "./Posters";
 
@@ -20,12 +21,20 @@ function OverviewMovie({ mediaData }) {
   console.log(production);
 
   return (
-    <div className="ml-16 grid grid-cols-[20rem_1fr] gap-12 text-gray-100">
-      <PosterBig posterPath={posterPath} posterName={title} />
-      <div className="flex flex-col">
-        <h2 className="mb-4 text-2xl font-medium">Storyline</h2>
-        <p className="font-medium">{mediaData.overview}</p>
+    <div className="mx-4 grid w-full grid-cols-[auto_1fr] text-gray-100 lg:gap-12 xl:mx-16">
+      {/* Poster Overview */}
+      <div className="hidden lg:block">
+        <OverviewPoster posterPath={posterPath} posterName={title} />
+      </div>
 
+      {/* Storyline */}
+      <div className="col-span-2 flex w-full flex-col lg:col-span-1">
+        <h2 className="mb-4 text-2xl font-medium">Storyline</h2>
+        <p className="text-wrap text-justify font-medium">
+          {mediaData.overview}
+        </p>
+
+        {/* Fields */}
         <div className="mt-8 grid grid-cols-[8rem_1fr]">
           <div className="capitalize">
             <ul className="space-y-1">
@@ -41,6 +50,7 @@ function OverviewMovie({ mediaData }) {
             </ul>
           </div>
 
+          {/* Fields information */}
           <div>
             <ul className="space-y-1">
               <ItemList>{released}</ItemList>
@@ -67,7 +77,7 @@ function OverviewMovie({ mediaData }) {
               <ItemList>{status}</ItemList>
               <ItemList>{language}</ItemList>
 
-              <div className="flex">
+              <div className="flex flex-wrap">
                 {production.map((company, index) => (
                   <ItemList key={company.id}>
                     {production.length === index + 1

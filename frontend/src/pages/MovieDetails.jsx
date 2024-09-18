@@ -37,7 +37,7 @@ function MovieDetails() {
           <div className="mx-auto">
             {selected === "overview" && <OverviewMovie mediaData={movieData} />}
             {selected === "videos" && <VideosItem />}
-            {selected === "photos" && <PhotosItem />}
+            {selected === "photos" && <PhotosItem images={movieData.images} />}
           </div>
         </div>
       </div>

@@ -9,7 +9,7 @@ export function PosterBig({ posterPath, posterName }) {
 
   return (
     <img
-      src={`${TMDB_IMAGE_POSTER_URL}/${posterPath}`}
+      src={`${TMDB_IMAGE_POSTER_URL}${posterPath}`}
       alt={`Poster of ${posterName}`}
     />
   );

@@ -21,7 +21,7 @@ const getTVShow = async (req, res) => {
   const { id } = req.params;
   try {
     const response = await fetch(
-      `${TMDB_URL}/tv/${id}?api_key=${process.env.TMDB_API_KEY}&append_to_response=credits`
+      `${TMDB_URL}/tv/${id}?api_key=${process.env.TMDB_API_KEY}&append_to_response=credits,images`
     );
     const data = await response.json();
     res.status(200).json(data);
