@@ -1,77 +1,140 @@
 import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 import { mixData } from "../helpers/mixData";
 import Loading from "./Loading";
 
 const TMDB_IMAGE_HERO_URL = "https://image.tmdb.org/t/p/original";
+const TMDB_IMAGE_HERO_LESS_URL = "https://image.tmdb.org/t/p/w500";
 
 function Hero({ media, mediaType }) {
+  const [matchWidth, setMatchWidth] = useState(null);
   const { id, backdrop, description, title, rating, year } = mixData(media);
+
+  // Look at window.matchMedia
+  const matchMedia = window.matchMedia("(min-width: 1024px)");
+
+  // Set the matchWidth to true or false at first rendering
+  useEffect(
+    function () {
+      function seeWidth() {
+        setMatchWidth(matchMedia.matches);
+      }
+      seeWidth();
+    },
+    [matchMedia.matches],
+  );
+
+  // When the size of window change set the matchWidth to true or false,
+  // true is min-width is equal or greater then 1024px and false otherwise
+  matchMedia.onchange = (e) => {
+    setMatchWidth(e.matches);
+  };
 
   if (!media) return <Loading />;
 
   return (
-    <div className="bg-black text-white">
-      <div className="fadeIn relative h-full pb-[50%] lg:pb-[40%]">
-        {/* Backdrop */}
-        {/* TODO: Add conditional rendering componenent based on breakpoint view */}
-        <div
-          className="hidden"
-          style={{
-            backgroundImage: `linear-gradient(90deg, #000 0, transparent 50%, transparent),url(${TMDB_IMAGE_HERO_URL}${backdrop})`,
-            position: "absolute",
-            right: "0",
-            top: "0",
-            backgroundSize: "cover",
-            backgroundRepeat: "no-repeat",
-            height: "100%",
-            width: "71.1%",
-          }}
-        >
-          backdrop
-        </div>
-        <div
-          style={{
-            backgroundImage: `linear-gradient(0deg, #000 0, transparent 50%, transparent),url(${TMDB_IMAGE_HERO_URL}${backdrop})`,
-            position: "absolute",
-            right: "0",
-            top: "0",
-            backgroundSize: "cover",
-            backgroundRepeat: "no-repeat",
-            height: "100%",
-            width: "100%",
-          }}
-        >
-          <div className="flex h-full flex-col items-center justify-center text-2xl font-medium text-black">
-            Play Icon
-          </div>
-        </div>
-        {/* Movie or TV Show details */}
-        {/* ---------------------------------- */}
-        {/* TODO: Add back movie or tv show details to breakpoint lg:1024px */}
-      </div>
-      <div className="flex flex-col space-y-2 p-4 text-white">
-        {/* Title */}
-        {mediaType ? (
-          <Link to={`/${mediaType}/${id}`} className="w-fit">
-            <h2 className="text-2xl font-medium md:text-3xl lg:text-4xl">
-              {title}
-            </h2>
-          </Link>
-        ) : (
-          <h2 className="text-2xl font-medium md:text-3xl lg:text-4xl">
-            {title}
-          </h2>
-        )}
-        <div className="flex gap-2 text-sm text-gray-400">
-          <p className="">Rating {rating}</p>
+    <div className="bg-black text-gray-100">
+      {/* Hero on 1024px or greater */}
+      {matchWidth === true && (
+        <>
+          {/* Render when matchWidth is equal or greater then 1024px */}
+          <div className="fadeIn relative h-full pb-[50%] lg:pb-[40%]">
+            <div
+              style={{
+                backgroundImage: `linear-gradient(90deg, #000 0, transparent 50%, transparent),url(${TMDB_IMAGE_HERO_URL}${backdrop})`,
+                position: "absolute",
+                right: "0",
+                top: "0",
+                backgroundSize: "cover",
+                backgroundRepeat: "no-repeat",
+                height: "100%",
+                width: "71.1%",
+              }}
+            >
+              backdrop
+            </div>
 
-          <p>{year}</p>
-        </div>
-        {/* Description */}
-        <div className="hidden font-medium md:block">{description}</div>
-        <div className="hidden lg:block">button</div>
-      </div>
+            {/* Movie or Tv Show details */}
+            <div
+              className="absolute bottom-0 left-0 top-0 z-10 flex h-full w-[45%] flex-col justify-center gap-6 p-16"
+              hidden
+            >
+              {/* Title of Movie or Tv */}
+              {mediaType ? (
+                <Link to={`/${mediaType}/${id}`} className="w-fit">
+                  <h2 className="text-4xl font-semibold">{title}</h2>
+                </Link>
+              ) : (
+                <h2 className="text-4xl font-semibold">{title}</h2>
+              )}
+
+              {/* Minor information */}
+              <div className="flex gap-2">
+                <p className="">Rating {rating}</p>
+                <p>{year}</p>
+              </div>
+
+              {/* Description */}
+              <div className="font-medium">{description}</div>
+              <div className="">button</div>
+            </div>
+          </div>
+        </>
+      )}
+
+      {/* Hero on less the 1024px */}
+      {matchWidth === false && (
+        <>
+          {/* Render when matchWidth is less then 1024px */}
+          <div className="fadeIn relative h-full pb-[50%]">
+            <div
+              className="bg-center"
+              style={{
+                backgroundImage: `linear-gradient(0deg, #000 0, transparent 50%, transparent),url(${TMDB_IMAGE_HERO_URL}${backdrop})`,
+                position: "absolute",
+                right: "0",
+                top: "0",
+                backgroundSize: "cover",
+                backgroundRepeat: "no-repeat",
+                height: "100%",
+                width: "100%",
+              }}
+            >
+              {/* Play icon */}
+              <div className="flex h-full flex-col items-center justify-center text-2xl font-medium text-black">
+                Play Icon
+              </div>
+            </div>
+          </div>
+
+          {/* Movie or Tv Show details */}
+          <div className="flex flex-col space-y-2 p-4">
+            {/* Title of Movie or Tv */}
+            {mediaType ? (
+              <Link to={`/${mediaType}/${id}`} className="w-fit">
+                <h2 className="text-2xl font-medium md:text-3xl lg:text-4xl">
+                  {title}
+                </h2>
+              </Link>
+            ) : (
+              <h2 className="text-2xl font-medium md:text-3xl lg:text-4xl">
+                {title}
+              </h2>
+            )}
+
+            {/* Minor information */}
+            <div className="flex gap-2 text-sm text-gray-400">
+              <p className="">Rating {rating}</p>
+              <p>{year}</p>
+            </div>
+
+            {/* Description */}
+            <div className="hidden font-medium md:block">{description}</div>
+            <div className="hidden lg:block">button</div>
+          </div>
+        </>
+      )}
     </div>
   );
 }
