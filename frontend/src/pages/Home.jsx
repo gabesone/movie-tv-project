@@ -3,6 +3,8 @@ import Poster from "../components/Poster";
 import randomHero from "../helpers/randomHero";
 import Loading from "../components/Loading";
 import { useTrendingData } from "../hooks/useTrendingData";
+import CarouselMovie from "../components/CarouselMovie";
+import CarouselTv from "../components/CarouselTv";
 
 function Home() {
   const { trendingMovieQuery, trendingTvShowQuery } = useTrendingData();
@@ -21,8 +23,9 @@ function Home() {
       <Hero media={randomHeroData} mediaType={randomHeroData.media_type} />
       <h2 className="text-3xl">Home</h2>
       <div></div>
-      <div className="flex">
-        <Poster />
+      <div>
+        <CarouselMovie mediaData={trendingMovieQuery.data} />
+        <CarouselTv mediaData={trendingTvShowQuery.data} />
 
         <p>a</p>
       </div>
