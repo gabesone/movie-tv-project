@@ -4,7 +4,8 @@ import { getTrendingMovies } from "../services/apiMovie";
 import { getTrendingTVShows } from "../services/apiTVShow";
 
 export function useTrendingData() {
-  // Fetching TrendingMovie and TrendingTvShow API
+  // Fetching TrendingMovies and TrendingTvShows from services API folder
+
   const trendingMovieQuery = useQuery({
     queryKey: ["trendingMovie"],
     queryFn: getTrendingMovies,

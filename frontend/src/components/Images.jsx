@@ -54,8 +54,10 @@ export function PosterMovieLink({
         alt={`Poster of ${posterName}`}
         className="transition-transform duration-300 hover:scale-[1.02]"
       />
-      <h3 className="my-2 text-base font-medium">{posterName}</h3>
-      <p className="text-gray-500">{posterRating}</p>
+      <h3 className="my-2 hidden text-base font-medium sm:block">
+        {posterName}
+      </h3>
+      <p className="hidden text-gray-500 sm:block">{posterRating}</p>
     </Link>
   );
 }
@@ -67,14 +69,18 @@ export function PosterTvLink({
   posterRating,
 }) {
   return (
-    <Link to={`/tv/${posterId}`}>
+    <Link to={`/tv/${posterId}`} className="">
       <img
         src={`${TMDB_IMAGE_URL}${posterPath}`}
         alt={`Poster of ${posterName}`}
         className="transition-transform duration-300 hover:scale-[1.02]"
       />
-      <h3 className="my-2 text-base font-medium">{posterName}</h3>
-      <p className="text-gray-500">{posterRating}</p>
+      <div className="flex flex-col">
+        <h3 className="my-2 hidden text-base font-medium sm:block">
+          {posterName}
+        </h3>
+        <p className="hidden text-gray-500 sm:block">{posterRating}</p>
+      </div>
     </Link>
   );
 }

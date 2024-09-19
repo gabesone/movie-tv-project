@@ -11,8 +11,8 @@ import { PosterTvLink } from "./Images";
 const TMDB_IMAGE_POSTER_URL = "https://image.tmdb.org/t/p/w500";
 
 function CarouselTv({ mediaData }) {
-  const [slides, setSlides] = useState(null);
-  const [groupSlides, setGroupSlides] = useState(null);
+  const [slides, setSlides] = useState(7);
+  const [groupSlides, setGroupSlides] = useState(7);
   const [nav, setNav] = useState(true);
 
   // Change the behavior of slides based on width screen
@@ -66,12 +66,10 @@ function CarouselTv({ mediaData }) {
       slidesPerView={slides}
       slidesPerGroup={groupSlides}
       navigation={nav}
-      onSwiper={(swiper) => console.log(swiper)}
-      onSlideChange={() => console.log("slide change")}
-      className="px-14 text-gray-100"
+      className="px-4 text-gray-100 md:px-8 lg:px-14"
     >
       {mediaData?.results?.map((poster) => (
-        <SwiperSlide className="my-8 w-52" key={poster.id}>
+        <SwiperSlide className="my-2" key={poster.id}>
           <PosterTvLink
             posterId={poster.id}
             posterName={poster.title ? poster.title : poster.name}

@@ -2,7 +2,7 @@ import { Backdrop, Poster } from "./Images";
 
 function PhotosItem({ images }) {
   return (
-    <div className="mx-4 my-8 w-full space-y-16 text-gray-100 xl:ml-16">
+    <div className="my-8 w-full space-y-16 text-gray-100">
       {/* Backdrops */}
       <div className="space-y-4">
         <div className="flex items-baseline gap-2">

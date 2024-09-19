@@ -40,14 +40,14 @@ function Hero({ media, mediaType }) {
       {matchWidth === true && (
         <>
           {/* Render when matchWidth is equal or greater then 1024px */}
-          <div className="fadeIn relative h-full pb-[50%] lg:pb-[40%]">
+          <div className="fadeIn relative lg:pb-[40%]">
             <div
               style={{
                 backgroundImage: `linear-gradient(90deg, #000 0, transparent 50%, transparent),url(${TMDB_IMAGE_HERO_URL}${backdrop})`,
                 position: "absolute",
                 right: "0",
                 top: "0",
-                backgroundSize: "cover",
+                backgroundSize: "contain",
                 backgroundRepeat: "no-repeat",
                 height: "100%",
                 width: "71.1%",
@@ -56,7 +56,7 @@ function Hero({ media, mediaType }) {
 
             {/* Movie or Tv Show details */}
             <div
-              className="absolute bottom-0 left-0 top-0 z-10 flex h-full w-[45%] flex-col justify-center gap-6 p-16"
+              className="absolute bottom-0 left-0 top-0 z-10 flex h-full w-[45%] flex-col justify-center gap-6 p-14"
               hidden
             >
               {/* Title of Movie or Tv */}
@@ -91,7 +91,7 @@ function Hero({ media, mediaType }) {
       {matchWidth === false && (
         <>
           {/* Render when matchWidth is less then 1024px */}
-          <div className="fadeIn relative h-full pb-[45%]">
+          <div className="fadeIn relative min-h-80">
             <div
               className="bg-center"
               style={{
@@ -99,6 +99,8 @@ function Hero({ media, mediaType }) {
                 position: "absolute",
                 right: "0",
                 top: "0",
+                bottom: "0",
+                left: "0",
                 backgroundSize: "cover",
                 backgroundRepeat: "no-repeat",
                 height: "100%",
@@ -106,14 +108,14 @@ function Hero({ media, mediaType }) {
               }}
             >
               {/* Play icon */}
-              <div className="flex h-full flex-col items-center justify-center text-4xl font-extrabold md:text-5xl">
+              <div className="flex h-full flex-col items-center justify-center text-4xl md:text-5xl">
                 <SlControlPlay />
               </div>
             </div>
           </div>
 
           {/* Movie or Tv Show details */}
-          <div className="flex flex-col space-y-2 px-4 pb-4 md:px-8 md:pb-8">
+          <div className="fadeIn flex flex-col space-y-2 px-4 pb-4 md:px-8 md:pb-8">
             {/* Title of Movie or Tv */}
             {mediaType ? (
               <Link to={`/${mediaType}/${id}`} className="w-fit">

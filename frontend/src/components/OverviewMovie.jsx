@@ -1,7 +1,6 @@
 import { mixMovieData } from "../helpers/mixData";
 import { OverviewPoster } from "./Images";
 import ItemList from "./ItemList";
-import { PosterBig } from "./Posters";
 
 function OverviewMovie({ mediaData }) {
   const {
@@ -18,28 +17,24 @@ function OverviewMovie({ mediaData }) {
     title,
   } = mixMovieData(mediaData);
 
-  console.log(production);
-
   return (
-    <div className="mx-4 grid w-full grid-cols-[auto_1fr] text-gray-100 lg:gap-12 xl:mx-16">
+    <div className="grid grid-cols-[auto_1fr] text-gray-100 lg:gap-14">
       {/* Poster Overview */}
       <div className="hidden lg:block">
         <OverviewPoster posterPath={posterPath} posterName={title} />
       </div>
 
       {/* Storyline */}
-      <div className="col-span-2 flex w-full flex-col lg:col-span-1">
+      <div className="flex flex-col">
         <h2 className="mb-4 text-2xl font-medium">Storyline</h2>
-        <p className="text-wrap text-justify font-medium">
-          {mediaData.overview}
-        </p>
+        <p className="font-medium">{mediaData.overview}</p>
 
         {/* Fields */}
         <div className="mt-8 grid grid-cols-[8rem_1fr]">
           <div className="capitalize">
             <ul className="space-y-1">
               <li>released</li>
-              <li>runtime</li>
+              <li>{runtime ? "runtime" : ""}</li>
               <li>director</li>
               <li>budget</li>
               <li>renevue</li>
@@ -54,7 +49,7 @@ function OverviewMovie({ mediaData }) {
           <div>
             <ul className="space-y-1">
               <ItemList>{released}</ItemList>
-              <ItemList>{runtime}</ItemList>
+              <ItemList>{runtime ? runtime : ""}</ItemList>
               <ItemList isPerson={true} idPerson={director[0].id}>
                 {director[0].name}
               </ItemList>

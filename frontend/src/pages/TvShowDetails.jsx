@@ -35,8 +35,8 @@ function TvShowDetails() {
         </nav>
 
         {/* Movie or TV Shows Information */}
-        <div className="mr-[2rem] xl:mr-[8rem]">
-          <div className="mx-auto">
+        <div className="px-4 md:px-8 xl:px-14">
+          <div>
             {selected === "overview" && (
               <OverviewTvShow mediaData={tvShowData} />
             )}

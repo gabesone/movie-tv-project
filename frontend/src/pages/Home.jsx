@@ -1,10 +1,10 @@
 import Hero from "../components/Hero";
-import Poster from "../components/Poster";
 import randomHero from "../helpers/randomHero";
 import Loading from "../components/Loading";
 import { useTrendingData } from "../hooks/useTrendingData";
 import CarouselMovie from "../components/CarouselMovie";
 import CarouselTv from "../components/CarouselTv";
+import TextLink from "../components/TextLink";
 
 function Home() {
   const { trendingMovieQuery, trendingTvShowQuery } = useTrendingData();
@@ -21,13 +21,23 @@ function Home() {
   return (
     <div>
       <Hero media={randomHeroData} mediaType={randomHeroData.media_type} />
-      <h2 className="text-3xl">Home</h2>
-      <div></div>
-      <div>
-        <CarouselMovie mediaData={trendingMovieQuery.data} />
-        <CarouselTv mediaData={trendingTvShowQuery.data} />
 
-        <p>a</p>
+      <div className="mt-8 space-y-4 sm:mt-16 sm:space-y-8">
+        {/* Trending movies */}
+        <div>
+          <TextLink pathname="/movie/category/trending">
+            Trending movies
+          </TextLink>
+          <CarouselMovie mediaData={trendingMovieQuery.data} />
+        </div>
+
+        {/* Trending tv shows */}
+        <div>
+          <TextLink pathname="/tv/category/trending">
+            Trending tv shows
+          </TextLink>
+          <CarouselTv mediaData={trendingTvShowQuery.data} />
+        </div>
       </div>
     </div>
   );

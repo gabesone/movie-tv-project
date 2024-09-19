@@ -9,9 +9,13 @@ function AppLayout() {
       <MainNav />
 
       <main className="overflow-y-scroll">
-        <Outlet />
+        <div className="flex flex-col">
+          <div className="flex-1">
+            <Outlet />
+          </div>
 
-        <Footer />
+          <Footer />
+        </div>
       </main>
     </div>
   );

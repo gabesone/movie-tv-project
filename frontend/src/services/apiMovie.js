@@ -1,4 +1,4 @@
-// Trending movies
+// GET trending movies
 export async function getTrendingMovies() {
   try {
     const res = await fetch("/api/movie");
@@ -28,25 +28,62 @@ export async function getMovie(id) {
   }
 }
 
-// export async function getTrendings() {
-//   try {
-//     const [movieData, tvData] = await Promise.all([
-//       getTrendingMovies(),
-//       getTrendingTVShows(),
-//     ]);
+// GET popular movies
+export async function getPopularMovies() {
+  try {
+    const res = await fetch("/api/movie/popular");
+    const data = await res.json();
 
-//     const selectedHero = randomHero(movieData, tvData);
-//     const mediaType = selectedHero.media_type;
+    if (!res.ok) throw new Error("Failed to get popular movies");
 
-//     if (selectedHero.media_type === "movie") {
-//       const randomData = await getMovie(selectedHero.id);
-//       return { mediaType, randomData };
-//     }
+    return data;
+  } catch (error) {
+    console.log(error.message);
+    throw Error(error.message);
+  }
+}
 
-//     const randomData = await getTVShow(selectedHero.id);
-//     return { mediaType, randomData };
-//   } catch (error) {
-//     console.log(error.message);
-//     throw Error(error.message);
-//   }
-// }
+// GET top rated movies
+export async function getTopRatedMovies() {
+  try {
+    const res = await fetch("/api/movie/top_rated");
+    const data = await res.json();
+
+    if (!res.ok) throw new Error("Failed to get top rated movies");
+
+    return data;
+  } catch (error) {
+    console.log(error.message);
+    throw Error(error.message);
+  }
+}
+
+// GET upcoming movies
+export async function getUpcomingMovies() {
+  try {
+    const res = await fetch("/api/movie/upcoming");
+    const data = await res.json();
+
+    if (!res.ok) throw new Error("Failed to get upcoming movies");
+
+    return data;
+  } catch (error) {
+    console.log(error.message);
+    throw Error(error.message);
+  }
+}
+
+// GET now playing movies
+export async function getNowPlayingMovies() {
+  try {
+    const res = await fetch("/api/movie/now_playing");
+    const data = await res.json();
+
+    if (!res.ok) throw new Error("Failed to get now playing movies");
+
+    return data;
+  } catch (error) {
+    console.log(error.message);
+    throw Error(error.message);
+  }
+}

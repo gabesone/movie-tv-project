@@ -1,6 +1,6 @@
 import ItemList from "./ItemList";
 import { mixTvShowData } from "../helpers/mixData";
-import { PosterBig } from "./Posters";
+import { OverviewPoster } from "./Images";
 
 function OverviewTvShow({ mediaData }) {
   const {
@@ -17,17 +17,19 @@ function OverviewTvShow({ mediaData }) {
     title,
   } = mixTvShowData(mediaData);
 
-  console.log(creator);
-
-  console.log(startDate);
-
   return (
-    <div className="ml-16 grid grid-cols-[20rem_1fr] gap-12 text-gray-100">
-      <PosterBig posterPath={posterPath} posterName={title} />
+    <div className="grid grid-cols-[auto_1fr] text-gray-100 lg:gap-14">
+      {/* Poster Overview */}
+      <div className="hidden lg:block">
+        <OverviewPoster posterPath={posterPath} posterName={title} />
+      </div>
+
+      {/* Storyline */}
       <div className="flex flex-col">
         <h2 className="mb-4 text-2xl font-medium">Storyline</h2>
         <p className="font-medium">{mediaData.overview}</p>
 
+        {/* Fields */}
         <div className="mt-8 grid grid-cols-[8rem_1fr]">
           <div className="capitalize">
             <ul className="space-y-1">
@@ -43,6 +45,7 @@ function OverviewTvShow({ mediaData }) {
             </ul>
           </div>
 
+          {/* Fields information */}
           <div>
             <ul className="space-y-1">
               <ItemList>{startDate}</ItemList>
@@ -78,7 +81,7 @@ function OverviewTvShow({ mediaData }) {
               <ItemList>{status}</ItemList>
               <ItemList>{language}</ItemList>
 
-              <div className="flex">
+              <div className="flex flex-wrap">
                 {network.map((company, index) => (
                   <ItemList key={company.id}>
                     {network.length === index + 1
