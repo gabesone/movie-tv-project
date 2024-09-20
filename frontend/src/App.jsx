@@ -8,12 +8,14 @@ import TvShow from "./pages/TvShow";
 
 import MovieDetails, { loader as loaderMovie } from "./pages/MovieDetails";
 import TvShowDetails, { loader as loaderTvShow } from "./pages/TvShowDetails";
+import PageNotFound from "./pages/PageNotFound";
 
 const queryClient = new QueryClient();
 
 const router = createBrowserRouter([
   {
     element: <AppLayout />,
+    errorElement: <PageNotFound />,
     children: [
       { path: "/", element: <Home /> },
       { path: "/movie", element: <Movie /> },

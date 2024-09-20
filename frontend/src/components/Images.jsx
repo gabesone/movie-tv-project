@@ -69,7 +69,7 @@ export function PosterTvLink({
   posterRating,
 }) {
   return (
-    <Link to={`/tv/${posterId}`} className="">
+    <Link to={`/tv/${posterId}`}>
       <img
         src={`${TMDB_IMAGE_URL}${posterPath}`}
         alt={`Poster of ${posterName}`}

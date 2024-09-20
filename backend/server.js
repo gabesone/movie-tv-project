@@ -15,6 +15,8 @@ app.use((req, res, next) => {
 });
 
 // Routes
+app.get("/", (req, res) => res.send("movie-tv-project API"));
+
 app.use("/api/movie", movieRoutes);
 
 app.use("/api/tv", tvRoutes);
