@@ -6,14 +6,21 @@ export default defineConfig({
   plugins: [react()],
   server: {
     proxy: {
-      "/api": "https://movies-api-gabesone.vercel.app",
+      "/api": {
+        target: "http://localhost:4000",
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, "/api"),
+      },
+    },
+  },
+  build: {
+    proxy: {
+      "/api": {
+        target: "https://movies-api-gabesone.vercel.app",
+        changeOrigin: true,
+        secure: false,
+        rewrite: (path) => path.replace(/^\/api/, "/api"),
+      },
     },
   },
 });
-
-// {
-//   target: "https://movies-api-gabesone.vercel.app",
-//   changeOrigin: true,
-//   secure: true,
-//   rewrite: (path) => path.replace(/^\/api/, ""),
-// }
