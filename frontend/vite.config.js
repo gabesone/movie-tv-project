@@ -7,18 +7,10 @@ export default defineConfig({
   server: {
     proxy: {
       "/api": {
-        target: "http://localhost:4000",
-        changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api/, "/api"),
-      },
-    },
-  },
-  build: {
-    proxy: {
-      "/api": {
         target: "https://movies-api-gabesone.vercel.app",
         changeOrigin: true,
         secure: false,
+        ws: true,
         rewrite: (path) => path.replace(/^\/api/, "/api"),
       },
     },
