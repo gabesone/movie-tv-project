@@ -1,4 +1,4 @@
-export default async function handler(req, res) {
+module.exports = async function handler(req, res) {
   const apiUrl = "https://movies-api-gabesone.vercel.app" + req.query.path;
 
   try {
@@ -8,4 +8,4 @@ export default async function handler(req, res) {
   } catch (error) {
     res.status(500).json({ error: "Error fetching data" });
   }
-}
+};
