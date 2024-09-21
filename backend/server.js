@@ -15,9 +15,9 @@ app.use((req, res, next) => {
 });
 
 // Routes
-app.use("/api/movie", movieRoutes);
+app.use("/movie", movieRoutes);
 
-app.use("/api/tv", tvRoutes);
+app.use("/tv", tvRoutes);
 
 // Listen
 app.listen(process.env.PORT, () => {

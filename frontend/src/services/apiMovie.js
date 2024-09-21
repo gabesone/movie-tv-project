@@ -1,7 +1,7 @@
 // GET trending movies
 export async function getTrendingMovies() {
   try {
-    const res = await fetch("/api/proxy?path=/api/movie");
+    const res = await fetch("/api/proxy?path=/movie");
     const data = await res.json();
 
     if (!res.ok) throw new Error("Failed to get trending movies");
