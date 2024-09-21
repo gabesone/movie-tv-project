@@ -1,7 +1,7 @@
 // Trending tv shows
 export async function getTrendingTVShows() {
   try {
-    const res = await fetch("/api/tv");
+    const res = await fetch("/api/proxy?path=/api/tv");
     const data = await res.json();
 
     if (!res.ok) throw new Error("Failed to get trending tv shows");

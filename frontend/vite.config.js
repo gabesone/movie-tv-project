@@ -10,7 +10,6 @@ export default defineConfig({
         target: "https://movies-api-gabesone.vercel.app",
         changeOrigin: true,
         secure: false,
-        ws: true,
         rewrite: (path) => path.replace(/^\/api/, "/api"),
       },
     },
