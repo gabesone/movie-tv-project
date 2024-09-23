@@ -2,6 +2,8 @@ require("dotenv").config();
 
 const express = require("express");
 const cors = require("cors");
+const app = express();
+
 const movieRoutes = require("./routes/movies");
 const tvRoutes = require("./routes/tv");
 
@@ -10,7 +12,7 @@ const corsOptions = {
   optionsSuccessStatus: 200,
 };
 
-app.use(cors(corsOptions));
+app.use(cors());
 
 // Middleware
 app.use(express.json());
