@@ -56,7 +56,7 @@ function OverviewMovie({ mediaData }) {
               <ItemList>{budget}</ItemList>
               <ItemList>{revenue}</ItemList>
 
-              <li>
+              <li className="flex flex-wrap">
                 {genre.map((genreItem) => (
                   <ItemList
                     key={genreItem.id}

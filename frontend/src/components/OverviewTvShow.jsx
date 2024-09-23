@@ -63,7 +63,7 @@ function OverviewTvShow({ mediaData }) {
                 ))}
               </div>
 
-              <li>
+              <li className="flex flex-wrap">
                 {genre.map((genreItem) => (
                   <ItemList
                     key={genreItem.id}
