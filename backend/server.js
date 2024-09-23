@@ -1,18 +1,19 @@
 require("dotenv").config();
 
 const express = require("express");
+const cors = require("cors");
 const movieRoutes = require("./routes/movies");
 const tvRoutes = require("./routes/tv");
 
-const app = express();
+const corsOptions = {
+  origin: "https://movies-gabesone.vercel.app",
+  optionsSuccessStatus: 200,
+};
+
+app.use(cors(corsOptions));
 
 // Middleware
 app.use(express.json());
-
-app.use((req, res, next) => {
-  console.log(req.path, req.method);
-  next();
-});
 
 // Routes
 app.use("/movie", movieRoutes);

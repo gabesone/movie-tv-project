@@ -1,7 +1,9 @@
+const API_URL = "https://movies-api-gabesone.vercel.app";
+
 // GET trending movies
 export async function getTrendingMovies() {
   try {
-    const res = await fetch("/movie");
+    const res = await fetch(API_URL + "/movie");
     const data = await res.json();
 
     if (!res.ok) throw new Error("Failed to get trending movies");
@@ -16,7 +18,7 @@ export async function getTrendingMovies() {
 // GET a single movie
 export async function getMovie(id) {
   try {
-    const res = await fetch(`/api/movie/${id}`);
+    const res = await fetch(`${API_URL}/movie/${id}`);
     const data = await res.json();
 
     if (!res.ok) throw new Error("Failed to get movie");
@@ -31,7 +33,7 @@ export async function getMovie(id) {
 // GET popular movies
 export async function getPopularMovies() {
   try {
-    const res = await fetch("/api/movie/popular");
+    const res = await fetch(`${API_URL}/movie/popular`);
     const data = await res.json();
 
     if (!res.ok) throw new Error("Failed to get popular movies");
@@ -46,7 +48,7 @@ export async function getPopularMovies() {
 // GET top rated movies
 export async function getTopRatedMovies() {
   try {
-    const res = await fetch("/api/movie/top_rated");
+    const res = await fetch(`${API_URL}/movie/top_rated`);
     const data = await res.json();
 
     if (!res.ok) throw new Error("Failed to get top rated movies");
@@ -61,7 +63,7 @@ export async function getTopRatedMovies() {
 // GET upcoming movies
 export async function getUpcomingMovies() {
   try {
-    const res = await fetch("/api/movie/upcoming");
+    const res = await fetch(`${API_URL}/movie/upcoming`);
     const data = await res.json();
 
     if (!res.ok) throw new Error("Failed to get upcoming movies");
@@ -76,7 +78,7 @@ export async function getUpcomingMovies() {
 // GET now playing movies
 export async function getNowPlayingMovies() {
   try {
-    const res = await fetch("/api/movie/now_playing");
+    const res = await fetch(`${API_URL}/movie/now_playing`);
     const data = await res.json();
 
     if (!res.ok) throw new Error("Failed to get now playing movies");
