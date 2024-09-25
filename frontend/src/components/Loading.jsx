@@ -1,6 +1,6 @@
 function Loading({ isComplete }) {
   return (
-    <div className="absolute z-40 text-white">
+    <div className="h-[690px] w-full bg-black text-white">
       <p>Loading...</p>
       {isComplete ? "Finished" : "loading spineerrr"}
     </div>

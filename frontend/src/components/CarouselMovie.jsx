@@ -9,8 +9,6 @@ import { useEffect, useState } from "react";
 import { PosterMovieLink } from "./Images";
 import Loading from "./Loading";
 
-const TMDB_IMAGE_POSTER_URL = "https://image.tmdb.org/t/p/w500";
-
 function CarouselMovie({ mediaData }) {
   const [slides, setSlides] = useState(7);
   const [groupSlides, setGroupSlides] = useState(7);

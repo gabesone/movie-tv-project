@@ -8,9 +8,9 @@ function AppLayout() {
     <div className="grid h-[100dvh] grid-rows-[auto_3.5rem] xl:grid-cols-[6rem_auto] xl:grid-rows-[none]">
       <MainNav />
 
-      <main className="overflow-y-scroll">
+      <main className="overflow-y-auto">
         <div className="flex flex-col">
-          <div className="flex-1">
+          <div className="h-[100dvh] flex-1">
             <Outlet />
           </div>
 
