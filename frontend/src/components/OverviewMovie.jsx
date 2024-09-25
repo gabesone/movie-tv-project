@@ -30,15 +30,16 @@ function OverviewMovie({ mediaData }) {
         <p className="font-medium">{mediaData.overview}</p>
 
         {/* Fields */}
+        {/* TODO: Fix issue with flex flex-wrap, when a list grows much */}
         <div className="mt-8 grid grid-cols-[8rem_1fr]">
           <div className="capitalize">
             <ul className="space-y-1">
               <li>released</li>
               <li>{runtime ? "runtime" : ""}</li>
-              <li>director</li>
+              <li>{director ? "director" : ""}</li>
               <li>budget</li>
               <li>renevue</li>
-              <li>gene</li>
+              <li>genre </li>
               <li>status</li>
               <li>language</li>
               <li>production</li>
