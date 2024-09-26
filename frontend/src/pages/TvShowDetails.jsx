@@ -13,8 +13,6 @@ function TvShowDetails() {
 
   const tvShowData = useLoaderData();
 
-  console.log(tvShowData);
-
   return (
     <div>
       <Hero media={tvShowData} />

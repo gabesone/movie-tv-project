@@ -12,7 +12,7 @@ function Footer() {
       <div className="flex items-center gap-4">
         Data provided by
         <a href="https://www.themoviedb.org/" target="_blank">
-          <img src="tmdb.svg" alt="TMDB Logo" />
+          <img src="/tmdb.svg" alt="TMDB Logo" />
         </a>
       </div>
 
