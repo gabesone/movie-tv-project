@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
+import { useInfiniteQuery } from "@tanstack/react-query";
 
 import { PosterMovieLink, PosterTvLink } from "../components/Images";
 
@@ -115,7 +115,7 @@ function Genre() {
     queryFn: ({ pageParam }) => testFetch(mediaId, pageParam),
     initialPageParam: 1,
     staleTime: 1000 * 60 * 60,
-    gcTime: 1000 * 60,
+    gcTime: 1000,
     getNextPageParam: (lastPage, pages) => {
       return lastPage.page === 500 ? null : pages.length + 1;
     },
@@ -137,7 +137,7 @@ function Genre() {
         </button>
 
         {mediaType === "movie" && (
-          <div className="grid grid-cols-3 gap-4 sm:grid-cols-5 lg:grid-cols-7">
+          <div className="grid grid-cols-3 py-6 sm:grid-cols-5 lg:grid-cols-7">
             {posters.map((poster) => (
               <PosterMovieLink
                 key={poster.id}

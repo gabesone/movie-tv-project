@@ -48,7 +48,7 @@ export function PosterMovieLink({
   posterRating,
 }) {
   return (
-    <Link to={`/movie/${posterId}`}>
+    <Link to={`/movie/${posterId}`} className="py-2">
       <img
         src={`${TMDB_IMAGE_URL}${posterPath}`}
         alt={`Poster of ${posterName}`}
@@ -76,7 +76,7 @@ export function PosterTvLink({
         className="h-48 w-32 transition-transform duration-300 hover:scale-[1.02] lg:h-80 lg:w-56"
       />
       <div className="flex flex-col">
-        <h3 className="my-2 hidden text-base font-medium sm:block">
+        <h3 className="my-2 hidden truncate text-base font-medium sm:block">
           {posterName}
         </h3>
         <p className="hidden text-gray-500 sm:block">{posterRating}</p>
