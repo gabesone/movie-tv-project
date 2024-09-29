@@ -208,6 +208,9 @@ function Genre() {
               <div ref={containerRef}></div>
             </div>
           )}
+          {(isFetching || isFetchingNextPage) && (
+            <div className="loader mx-auto py-4"></div>
+          )}
         </div>
       </div>
     </>

@@ -25,3 +25,23 @@ body {
     opacity: 1;
   }
 }
+
+/* https://dev.to/afif/i-made-100-css-loaders-for-your-next-project-4eje */
+.loader {
+  width: 40px;
+  padding: 4px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: #9333ea;
+  --_m: conic-gradient(#0000 10%, #000), linear-gradient(#000 0 0) content-box;
+  -webkit-mask: var(--_m);
+  mask: var(--_m);
+  -webkit-mask-composite: source-out;
+  mask-composite: subtract;
+  animation: loading 1s infinite linear;
+}
+@keyframes loading {
+  to {
+    transform: rotate(1turn);
+  }
+}
