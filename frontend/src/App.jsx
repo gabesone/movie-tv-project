@@ -9,7 +9,9 @@ import TvShow from "./pages/TvShow";
 import MovieDetails, { loader as loaderMovie } from "./pages/MovieDetails";
 import TvShowDetails, { loader as loaderTvShow } from "./pages/TvShowDetails";
 import PageNotFound from "./pages/PageNotFound";
-import Genre from "./pages/Genre";
+import MovieGenre from "./pages/MovieGenre";
+import TvShowGenre from "./pages/TvShowGenre";
+import Person from "./pages/Person";
 
 const queryClient = new QueryClient();
 
@@ -32,9 +34,14 @@ const router = createBrowserRouter([
         loader: loaderTvShow,
       },
       {
-        path: "/genre/:mediaId/:mediaType",
-        element: <Genre />,
+        path: "/genre/:mediaId/movie",
+        element: <MovieGenre />,
       },
+      {
+        path: "/genre/:mediaId/tv",
+        element: <TvShowGenre />,
+      },
+      { path: "/person/:personId", element: <Person /> },
     ],
   },
 ]);
