@@ -52,9 +52,9 @@ export function PosterMovieLink({
       <img
         src={`${TMDB_IMAGE_URL}${posterPath}`}
         alt={`Poster of ${posterName}`}
-        className="h-48 w-32 transition-transform duration-300 hover:scale-[1.02] sm:h-56 sm:w-40 lg:h-80 lg:w-56"
+        className="h-48 w-32 transition-transform duration-300 hover:scale-[1.02] sm:h-56 sm:w-40 lg:h-[21rem] lg:w-[14rem]"
       />
-      <h3 className="my-2 hidden text-base font-medium sm:block">
+      <h3 className="my-2 hidden truncate text-base font-medium sm:block">
         {posterName}
       </h3>
       <p className="hidden text-gray-500 sm:block">{posterRating}</p>
