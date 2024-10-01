@@ -8,10 +8,12 @@ import {
   discoverDeathAge,
   stringDate,
 } from "../helpers/discoverAge";
-import { PosterMovieLink, PosterTvLink } from "../components/Images";
+import {
+  PersonPoster,
+  PosterMovieLink,
+  PosterTvLink,
+} from "../components/Images";
 import Loading from "../components/Loading";
-
-const imgSrc = "https://image.tmdb.org/t/p/w500";
 
 function Person() {
   const { personId } = useParams();
@@ -47,68 +49,69 @@ function Person() {
     <>
       <TopNav>{name}</TopNav>
 
-      <div className="mt-8 grid grid-cols-[20rem_1fr] px-4 text-gray-100 md:px-8 xl:px-14">
-        <img src={`${imgSrc}${profile_path}`} alt={`Poster of ${name}`} />
+      <div>
+        <div className="mt-8 flex px-4 text-gray-100 md:px-8 xl:px-14">
+          <PersonPoster profileName={name} profilePath={profile_path} />
 
-        <div className="px-8">
-          <h2 className="py-2 text-xl font-medium lg:text-2xl">{name}</h2>
+          <div className="px-14">
+            <h2 className="my-2 text-xl font-medium lg:text-2xl">{name}</h2>
 
-          <p>{biography}</p>
+            <p className="">{biography}</p>
 
-          {/* TODO: ADD missing information and refactor to another component */}
-          <div className="py-4">
-            <ul className="max-w-fit">
-              <li className="grid grid-cols-2">
-                <div>Known For</div>
-                <div>{known_for_department}</div>
-              </li>
-              <li className="grid grid-cols-2">
-                <div>Born</div>
-                <div>
-                  {strBirthday} {deathday ? "" : `(age ${age})`}
-                </div>
-              </li>
-              <li className="grid grid-cols-2">
-                <div>Place of Birth</div>
-                <div>{place_of_birth}</div>
-              </li>
-              {deathday ? (
+            {/* TODO: ADD missing information and refactor to another component */}
+            <div className="py-4">
+              <ul className="max-w-fit">
                 <li className="grid grid-cols-2">
-                  <div>Died</div>
+                  <div>Known For</div>
+                  <div>{known_for_department}</div>
+                </li>
+                <li className="grid grid-cols-2">
+                  <div>Born</div>
                   <div>
-                    {strDeathday} {`(aged ${died})`}
+                    {strBirthday} {deathday ? "" : `(age ${age})`}
                   </div>
                 </li>
-              ) : (
-                ""
-              )}
-            </ul>
+                <li className="grid grid-cols-2">
+                  <div>Place of Birth</div>
+                  <div>{place_of_birth}</div>
+                </li>
+                {deathday ? (
+                  <li className="grid grid-cols-2">
+                    <div>Died</div>
+                    <div>
+                      {strDeathday} {`(aged ${died})`}
+                    </div>
+                  </li>
+                ) : (
+                  ""
+                )}
+              </ul>
+            </div>
           </div>
         </div>
-      </div>
+        {/* Movies and Tv Shows posters */}
+        <div className="mt-16 px-4 md:px-8 xl:px-14">
+          <div className="grid grid-cols-3 gap-2 sm:grid-cols-5 lg:grid-cols-7">
+            {movie_credits?.cast.map((movie) => (
+              <PosterMovieLink
+                key={movie.id}
+                posterId={movie.id}
+                posterName={movie.title}
+                posterPath={movie.poster_path}
+                posterRating={movie.vote_average}
+              />
+            ))}
 
-      {/* Movies and Tv Shows posters */}
-      <div className="mt-16">
-        <div className="flex flex-wrap px-4">
-          {movie_credits?.cast.map((movie) => (
-            <PosterMovieLink
-              key={movie.id}
-              posterId={movie.id}
-              posterName={movie.title}
-              posterPath={movie.poster_path}
-              posterRating={movie.vote_average}
-            />
-          ))}
-
-          {tv_credits?.cast.map((tv) => (
-            <PosterTvLink
-              key={tv.id}
-              posterId={tv.id}
-              posterName={tv.name}
-              posterPath={tv.poster_path}
-              posterRating={tv.vote_average}
-            />
-          ))}
+            {tv_credits?.cast.map((tv) => (
+              <PosterTvLink
+                key={tv.id}
+                posterId={tv.id}
+                posterName={tv.name}
+                posterPath={tv.poster_path}
+                posterRating={tv.vote_average}
+              />
+            ))}
+          </div>
         </div>
       </div>
     </>
