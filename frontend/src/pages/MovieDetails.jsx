@@ -11,9 +11,7 @@ import TopNav from "../components/TopNav";
 
 function MovieDetails() {
   const [selected, setSelected] = useState("overview");
-
   const movieData = useLoaderData();
-  console.log(movieData);
 
   return (
     <>
@@ -39,7 +37,7 @@ function MovieDetails() {
             </ul>
           </nav>
 
-          {/* Movie or TV Shows Information */}
+          {/* Movie Information */}
           <div className="px-4 md:px-8 xl:px-14">
             <div>
               {selected === "overview" && (

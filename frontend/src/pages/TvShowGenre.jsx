@@ -83,11 +83,11 @@ function TvShowGenre() {
     <>
       <TopNav>Tv Show Genre: {filteredTvShowGenres}</TopNav>
       <div className="mt-8 px-4 text-gray-100 md:px-8 lg:px-12 xl:mt-16">
-        <h2 className="pb-2 text-xl font-medium capitalize text-gray-100 sm:pb-4 sm:text-2xl">
+        <h2 className="pb-4 text-xl font-medium capitalize text-gray-100 sm:pb-4 sm:text-2xl">
           Tv Show Genre: {filteredTvShowGenres}
         </h2>
 
-        <div className="grid grid-cols-3 gap-4 sm:grid-cols-5 lg:grid-cols-7">
+        <div className="grid grid-cols-3 gap-2 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7">
           {posters.map((poster) => (
             <PosterTvLink
               key={poster.id}
@@ -113,3 +113,7 @@ function TvShowGenre() {
 }
 
 export default TvShowGenre;
+
+{
+  /* <div className="grid grid-cols-3 gap-4 sm:grid-cols-5 lg:grid-cols-7"> */
+}

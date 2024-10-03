@@ -1,28 +1,26 @@
-import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
+import { SiImdb } from "react-icons/si";
+import { useState } from "react";
 
 import TopNav from "../components/TopNav";
-import { personFetch } from "../services/apiPerson";
 import {
   discoverAge,
   discoverDeathAge,
   stringDate,
 } from "../helpers/discoverAge";
-import {
-  PersonPoster,
-  PosterMovieLink,
-  PosterTvLink,
-} from "../components/Images";
+import { PersonPoster } from "../components/Images";
 import Loading from "../components/Loading";
+import { filterDuplicates } from "../helpers/filterDuplicates";
+import usePersonData from "../hooks/usePersonData";
+import SelectedItem from "../components/SelectedItem";
+import KnownFor from "../components/KnownFor";
+import Credits from "../components/Credits";
+import PhotosItem from "../components/PhotosItem";
 
 function Person() {
+  const [selected, setSelected] = useState("known for");
   const { personId } = useParams();
-
-  const { data, error, isFetching, isLoading } = useQuery({
-    queryKey: ["person"],
-    queryFn: () => personFetch(personId),
-    gcTime: 1000,
-  });
+  const { personQuery } = usePersonData(personId);
 
   const {
     name,
@@ -32,34 +30,43 @@ function Person() {
     biography,
     deathday,
     profile_path,
-    movie_credits,
-    tv_credits,
-  } = data ? data : [];
+    imdb_id,
+    combined_credits,
+    images,
+  } = personQuery.data ? personQuery.data : [];
 
-  console.log(tv_credits);
+  const moviesPosters = combined_credits?.crew.filter(
+    (movie) => movie.media_type === "movie",
+  );
+  const tvShowsPosters = combined_credits?.crew.filter(
+    (tv) => tv.media_type === "tv",
+  );
+
+  // Filtered movies and tv shows posters
+  const filteredMovies = filterDuplicates(moviesPosters);
+  const filteredTvShows = filterDuplicates(tvShowsPosters);
 
   const age = discoverAge(birthday);
   const strBirthday = stringDate(birthday);
   const strDeathday = stringDate(deathday);
   const died = deathday ? Math.abs(discoverDeathAge(birthday, deathday)) : "";
 
-  if (isLoading) <Loading />;
+  if (personQuery.isLoading) <Loading />;
 
   return (
     <>
       <TopNav>{name}</TopNav>
 
       <div>
-        <div className="mt-8 flex px-4 text-gray-100 md:px-8 xl:px-14">
+        <div className="mt-8 px-4 text-gray-100 md:px-8 lg:flex xl:px-14">
           <PersonPoster profileName={name} profilePath={profile_path} />
 
-          <div className="px-14">
-            <h2 className="my-2 text-xl font-medium lg:text-2xl">{name}</h2>
-
+          <div>
+            <h2 className="mb-4 text-xl font-medium lg:text-2xl">{name}</h2>
             <p className="">{biography}</p>
 
             {/* TODO: ADD missing information and refactor to another component */}
-            <div className="py-4">
+            <div className="flex flex-col flex-nowrap py-8">
               <ul className="max-w-fit">
                 <li className="grid grid-cols-2">
                   <div>Known For</div>
@@ -86,31 +93,51 @@ function Person() {
                   ""
                 )}
               </ul>
+
+              {/* External link: IMDb page */}
+              <div className="my-8 w-fit text-2xl text-gray-100 transition-colors duration-300 hover:text-purple-600">
+                <a
+                  href={`https://www.imdb.com/name/${imdb_id}`}
+                  target="_blank"
+                  aria-label={`IMDb link of ${name}`}
+                >
+                  <SiImdb />
+                </a>
+              </div>
             </div>
           </div>
         </div>
-        {/* Movies and Tv Shows posters */}
-        <div className="mt-16 px-4 md:px-8 xl:px-14">
-          <div className="grid grid-cols-3 gap-2 sm:grid-cols-5 lg:grid-cols-7">
-            {movie_credits?.cast.map((movie) => (
-              <PosterMovieLink
-                key={movie.id}
-                posterId={movie.id}
-                posterName={movie.title}
-                posterPath={movie.poster_path}
-                posterRating={movie.vote_average}
-              />
-            ))}
 
-            {tv_credits?.cast.map((tv) => (
-              <PosterTvLink
-                key={tv.id}
-                posterId={tv.id}
-                posterName={tv.name}
-                posterPath={tv.poster_path}
-                posterRating={tv.vote_average}
+        {/* Movies or Tv shows, credits and photos information about this person */}
+        <div>
+          <nav className="mb-8 flex xl:my-8">
+            <ul className="flex w-full items-center gap-[1px] text-base font-medium uppercase text-gray-500 xl:justify-center xl:gap-16 xl:text-xl">
+              <SelectedItem selected={selected} setSelected={setSelected}>
+                known for
+              </SelectedItem>
+              <SelectedItem selected={selected} setSelected={setSelected}>
+                credits
+              </SelectedItem>
+              <SelectedItem selected={selected} setSelected={setSelected}>
+                photos
+              </SelectedItem>
+            </ul>
+          </nav>
+
+          <div className="px-4 md:px-8 xl:px-14">
+            {/* If selected is equal known for */}
+            {selected === "known for" && (
+              <KnownFor
+                filteredMovies={filteredMovies}
+                filteredTvShows={filteredTvShows}
               />
-            ))}
+            )}
+
+            {/* If selected is equal credits */}
+            {selected === "credits" && <Credits />}
+
+            {/* If selected is equal photos */}
+            {selected === "photos" && <PhotosItem images={images} />}
           </div>
         </div>
       </div>

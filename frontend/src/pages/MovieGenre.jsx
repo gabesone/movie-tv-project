@@ -5,12 +5,13 @@ import { useCallback, useEffect, useRef } from "react";
 import { PosterMovieLink } from "../components/Images";
 import TopNav from "../components/TopNav";
 import { getMoviesGenres, movieGenres } from "../services/apiMovie";
+import { filterDuplicates } from "../helpers/filterDuplicates";
 
 // Options from Intersection Observer API
 const options = {
   root: null,
   rootMargin: "0px",
-  threshold: 0,
+  threshold: 0.5,
 };
 
 function Genre() {
@@ -54,6 +55,9 @@ function Genre() {
 
   const posters = data ? data.pages.flatMap((poster) => poster.results) : [];
 
+  // Filtered movies or tv shows posters
+  const filteredPosters = filterDuplicates(posters);
+
   useEffect(
     function () {
       // initialize observer API
@@ -89,7 +93,7 @@ function Genre() {
         </h2>
 
         <div className="grid grid-cols-3 gap-2 sm:grid-cols-5 lg:grid-cols-7">
-          {posters.map((poster) => (
+          {filteredPosters.map((poster) => (
             <PosterMovieLink
               key={poster.id}
               posterId={poster.id}
@@ -98,11 +102,10 @@ function Genre() {
               posterRating={poster.vote_average}
             />
           ))}
-          <div className="bg-sky-400"></div>
-        </div>
 
-        {/* Hidden element to call fetchNextPage when the viewport hit this div */}
-        <div ref={containerRef}></div>
+          {/* Hidden element to call fetchNextPage when the viewport hit this div */}
+          <div ref={containerRef}></div>
+        </div>
 
         {(isFetching || isFetchingNextPage) && (
           <div className="loader mx-auto my-4"></div>

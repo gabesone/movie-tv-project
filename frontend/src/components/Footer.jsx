@@ -8,7 +8,7 @@ import ItemSocial from "./ItemSocial";
 
 function Footer() {
   return (
-    <footer className="my-8 flex-none space-y-6 px-4 text-sm font-medium text-gray-500 sm:space-y-4 md:px-8 xl:px-14">
+    <footer className="mb-8 mt-16 flex-none space-y-6 px-4 text-sm font-medium text-gray-500 sm:space-y-4 md:px-8 xl:px-14">
       <div className="flex items-center gap-4">
         Data provided by
         <a href="https://www.themoviedb.org/" target="_blank">
