@@ -112,12 +112,10 @@ export function PosterPersonLink({ posterPath, name, personId, character }) {
           width={226}
         />
         <div className="flex flex-col flex-nowrap">
-          <h3 className="mb-1 mt-3 truncate text-sm font-medium text-gray-100 sm:text-base">
+          <h3 className="mb-1 mt-3 text-sm font-medium text-gray-100 sm:text-base">
             {name}
           </h3>
-          <p className="truncate text-xs text-gray-500 sm:text-sm">
-            {character}
-          </p>
+          <p className="text-xs text-gray-500 sm:text-sm">{character}</p>
         </div>
       </div>
     </Link>
