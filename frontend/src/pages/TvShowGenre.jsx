@@ -113,7 +113,3 @@ function TvShowGenre() {
 }
 
 export default TvShowGenre;
-
-{
-  /* <div className="grid grid-cols-3 gap-4 sm:grid-cols-5 lg:grid-cols-7"> */
-}

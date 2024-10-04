@@ -54,6 +54,7 @@ export function PosterMovieLink({
           src={`${TMDB_IMAGE_URL}${posterPath}`}
           alt={`Poster of ${posterName}`}
           className="transition-transform duration-300 hover:scale-[1.02]"
+          width={226}
         />
         <h3 className="mb-1 mt-3 hidden truncate text-base font-medium text-gray-100 sm:block">
           {posterName}
@@ -77,6 +78,7 @@ export function PosterTvLink({
           src={`${TMDB_IMAGE_URL}${posterPath}`}
           alt={`Poster of ${posterName}`}
           className="transition-transform duration-300 hover:scale-[1.02]"
+          width={226}
         />
         <div className="flex flex-col">
           <h3 className="mb-1 mt-3 hidden truncate text-base font-medium text-gray-100 sm:block">
