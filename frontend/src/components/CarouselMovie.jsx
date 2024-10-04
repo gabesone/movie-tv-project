@@ -1,9 +1,16 @@
-import { Navigation, Pagination, Scrollbar, A11y } from "swiper/modules";
+import {
+  Navigation,
+  Pagination,
+  Scrollbar,
+  A11y,
+  FreeMode,
+} from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
+import "swiper/css/free-mode";
 import { useEffect, useState } from "react";
 
 import { PosterMovieLink } from "./Images";
@@ -62,11 +69,14 @@ function CarouselMovie({ mediaData }) {
 
   return (
     <Swiper
-      modules={[Navigation, Pagination]}
+      modules={[Navigation, Pagination, FreeMode]}
       spaceBetween={8}
       slidesPerView={slides}
       slidesPerGroup={groupSlides}
       navigation={nav}
+      // TODO: add freeMode behavior and breakpoints
+      // freeMode
+      // breakpoints={}
       className="px-4 text-gray-100 md:px-8 lg:px-14"
     >
       {mediaData?.results?.map((poster) => (
