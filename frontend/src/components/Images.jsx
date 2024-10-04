@@ -101,6 +101,23 @@ export function PersonPoster({ profilePath, profileName }) {
   );
 }
 
-{
-  /* <div className="w-[7.6rem] sm:w-[9.8rem] md:w-[11.4rem] lg:w-[12.1rem] xl:w-[14.2rem]"> */
+export function PosterPersonLink({ posterPath, name, personId, character }) {
+  return (
+    <Link to={`/person/${personId}`} className="mb-2">
+      <div>
+        <img
+          src={`${TMDB_IMAGE_URL}${posterPath}`}
+          alt={`Poster of ${name}`}
+          className="transition-transform duration-300 hover:scale-[1.02]"
+          width={226}
+        />
+        <div className="flex flex-col flex-nowrap">
+          <h3 className="mb-1 mt-3 truncate text-base font-medium text-gray-100">
+            {name}
+          </h3>
+          <p className="text-sm text-gray-500">{character}</p>
+        </div>
+      </div>
+    </Link>
+  );
 }

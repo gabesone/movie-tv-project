@@ -1,50 +1,28 @@
-import { Navigation, Pagination, Scrollbar, A11y } from "swiper/modules";
+import { Navigation, Pagination, FreeMode } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
+import "swiper/css/free-mode";
 import { useEffect, useState } from "react";
 
 import { PosterTvLink } from "./Images";
 
-const TMDB_IMAGE_POSTER_URL = "https://image.tmdb.org/t/p/w500";
-
 function CarouselTv({ mediaData }) {
-  const [slides, setSlides] = useState(7);
-  const [groupSlides, setGroupSlides] = useState(7);
-  const [nav, setNav] = useState(true);
+  const [isNav, setIsNav] = useState(true);
+  const [isFreeMode, setIsFreeMode] = useState(true);
 
   // Change the behavior of slides based on width screen
   function setSlidesView() {
-    if (window.innerWidth <= 640) {
-      setSlides(3);
-      setGroupSlides(1);
-      setNav(false);
+    if (window.innerWidth < 768) {
+      setIsNav(false);
+      setIsFreeMode(true);
     }
 
-    if (window.innerWidth > 640 && window.innerWidth <= 768) {
-      setSlides(4);
-      setGroupSlides(1);
-      setNav(false);
-    }
-
-    if (window.innerWidth > 768 && window.innerWidth <= 1024) {
-      setSlides(5);
-      setGroupSlides(5);
-      setNav(true);
-    }
-
-    if (window.innerWidth > 1024 && window.innerWidth <= 1280) {
-      setSlides(6);
-      setGroupSlides(6);
-      setNav(true);
-    }
-
-    if (window.innerWidth > 1280) {
-      setSlides(7);
-      setGroupSlides(7);
-      setNav(true);
+    if (window.innerWidth >= 768) {
+      setIsNav(true);
+      setIsFreeMode(false);
     }
   }
 
@@ -61,11 +39,28 @@ function CarouselTv({ mediaData }) {
 
   return (
     <Swiper
-      modules={[Navigation, Pagination]}
+      modules={[Navigation, Pagination, FreeMode]}
       spaceBetween={8}
-      slidesPerView={slides}
-      slidesPerGroup={groupSlides}
-      navigation={nav}
+      slidesPerView={3}
+      navigation={isNav}
+      freeMode={isFreeMode}
+      breakpoints={{
+        640: {
+          slidesPerView: 4,
+        },
+        768: {
+          slidesPerView: 5,
+          slidesPerGroup: 5,
+        },
+        1024: {
+          slidesPerView: 6,
+          slidesPerGroup: 6,
+        },
+        1280: {
+          slidesPerView: 7,
+          slidesPerGroup: 7,
+        },
+      }}
       className="px-4 text-gray-100 md:px-8 lg:px-14"
     >
       {mediaData?.results?.map((poster) => (
