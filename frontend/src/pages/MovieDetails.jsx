@@ -8,7 +8,6 @@ import VideosItem from "../components/VideosItem";
 import PhotosItem from "../components/PhotosItem";
 import OverviewMovie from "../components/OverviewMovie";
 import TopNav from "../components/TopNav";
-import CarouselPerson from "../components/CarouselPerson";
 
 function MovieDetails() {
   const [selected, setSelected] = useState("overview");
@@ -39,7 +38,7 @@ function MovieDetails() {
           </nav>
 
           {/* Movie Information */}
-          <div className="px-4 md:px-8 xl:px-14">
+          <div>
             <div>
               {selected === "overview" && (
                 <OverviewMovie mediaData={movieData} />
@@ -50,14 +49,6 @@ function MovieDetails() {
               )}
             </div>
           </div>
-        </div>
-
-        {/* Cast */}
-        <div className="mt-8 sm:mt-16">
-          <h2 className="mb-2 px-4 text-xl font-medium text-gray-100 sm:mb-4 sm:text-2xl md:px-8 lg:px-14">
-            Cast
-          </h2>
-          <CarouselPerson creditsData={movieData.credits} />
         </div>
 
         {/* More movies like this */}

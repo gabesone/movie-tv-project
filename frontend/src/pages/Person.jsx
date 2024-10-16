@@ -42,9 +42,14 @@ function Person() {
     (tv) => tv.media_type === "tv",
   );
 
+  // TODO: add a new filter array from cast, based on role of person (director/actor)
+  console.log(personQuery.data);
+
   // Filtered movies and tv shows posters
   const filteredMovies = filterDuplicates(moviesPosters);
   const filteredTvShows = filterDuplicates(tvShowsPosters);
+
+  console.log(filteredMovies);
 
   const age = discoverAge(birthday);
   const strBirthday = stringDate(birthday);
