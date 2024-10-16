@@ -2,16 +2,17 @@ import { useState } from "react";
 import { useLoaderData } from "react-router-dom";
 
 import Hero from "../components/Hero";
-import { getMovie } from "../services/apiMovie";
+import { getMovie, getMoviesRecommendations } from "../services/apiMovie";
 import SelectedItem from "../components/SelectedItem";
 import VideosItem from "../components/VideosItem";
 import PhotosItem from "../components/PhotosItem";
 import OverviewMovie from "../components/OverviewMovie";
 import TopNav from "../components/TopNav";
+import CarouselMovie from "../components/CarouselMovie";
 
 function MovieDetails() {
   const [selected, setSelected] = useState("overview");
-  const movieData = useLoaderData();
+  const { movieData, movieRecommendation } = useLoaderData();
 
   return (
     <>
@@ -52,6 +53,12 @@ function MovieDetails() {
         </div>
 
         {/* More movies like this */}
+        <div className="mt-8 sm:mt-16">
+          <h2 className="mb-2 px-4 text-xl font-medium text-gray-100 sm:mb-4 sm:text-2xl md:px-8 lg:px-14">
+            More Like This
+          </h2>
+          <CarouselMovie mediaData={movieRecommendation} />
+        </div>
       </div>
     </>
   );
@@ -59,7 +66,8 @@ function MovieDetails() {
 
 export async function loader({ params }) {
   const movieData = await getMovie(params.mediaId);
-  return movieData;
+  const movieRecommendation = await getMoviesRecommendations(params.mediaId);
+  return { movieData, movieRecommendation };
 }
 
 export default MovieDetails;

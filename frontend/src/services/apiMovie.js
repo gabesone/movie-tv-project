@@ -190,3 +190,21 @@ export async function getMoviesGenres(mediaId, page) {
     throw Error(error.message);
   }
 }
+
+const MOVIE_RE = "https://api.themoviedb.org/3/movie";
+
+// GET movies recommendations
+export async function getMoviesRecommendations(movieId) {
+  try {
+    const res = await fetch(
+      `${MOVIE_RE}/${movieId}/recommendations?api_key=${API_KEY2}`,
+    );
+
+    if (!res.ok) throw new Error("Failed to get movie recommendations");
+
+    return res.json();
+  } catch (error) {
+    console.log(error.message);
+    throw Error(error.message);
+  }
+}
