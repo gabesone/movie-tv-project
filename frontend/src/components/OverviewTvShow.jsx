@@ -18,7 +18,7 @@ function OverviewTvShow({ mediaData }) {
   } = mixTvShowData(mediaData);
 
   return (
-    <div className="grid grid-cols-[auto_1fr] text-gray-100 lg:gap-14">
+    <div className="grid grid-cols-[auto_1fr] px-4 text-gray-100 md:px-8 lg:gap-14 xl:px-14">
       {/* Poster Overview */}
       <div className="hidden lg:block">
         <OverviewPoster posterPath={posterPath} posterName={title} />

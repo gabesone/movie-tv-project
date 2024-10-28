@@ -4,7 +4,7 @@ function PhotosItem({ images }) {
   const { backdrops, posters, profiles } = images;
 
   return (
-    <div className="my-8 w-full space-y-16 text-gray-100">
+    <div className="my-8 w-full space-y-16 px-4 text-gray-100 md:px-8 xl:px-14">
       {/* Backdrops */}
       {backdrops?.length > 0 && (
         <div className="space-y-4">

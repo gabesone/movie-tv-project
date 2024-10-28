@@ -45,7 +45,7 @@ function MovieDetails() {
                 <OverviewMovie mediaData={movieData} />
               )}
               {selected === "videos" && <VideosItem />}
-              <div className="s">
+              <div>
                 {selected === "photos" && (
                   <PhotosItem images={movieData.images} />
                 )}

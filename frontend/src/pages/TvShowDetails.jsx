@@ -39,7 +39,7 @@ function TvShowDetails() {
           </nav>
 
           {/* Movie or TV Shows Information */}
-          <div className="px-4 md:px-8 xl:px-14">
+          <div>
             <div>
               {selected === "overview" && (
                 <OverviewTvShow mediaData={tvShowData} />
