@@ -28,7 +28,7 @@ function Search() {
 
   return (
     <>
-      <div className="sticky top-0 z-30 flex h-16 w-full items-center bg-[#222]">
+      <div className="sticky top-0 z-30 flex h-16 w-full items-center bg-[#222] xl:h-20">
         <input
           type="text"
           placeholder="Search for a movie, tv show or person..."
@@ -39,29 +39,27 @@ function Search() {
         />
       </div>
 
-      {query.length > 0 && (
-        <div className="h-[100dvh] px-4 text-gray-100 md:px-8 lg:px-14">
-          <h2 className="mb-8 mt-16 text-2xl font-medium">
-            Results For: {query}
-          </h2>
-          <div className="grid grid-cols-3 gap-2 sm:grid-cols-5 lg:grid-cols-7">
-            {filteredMulti.map((media) => {
-              return (
-                // tvPoster
-                media.media_type === "tv" && (
-                  <PosterTvLink
-                    posterId={media.id}
-                    posterName={media.name}
-                    posterPath={media.poster_path}
-                    posterRating={media.vote_average}
-                    key={media.id}
-                  />
-                )
-              );
-            })}
-          </div>
+      <div className="min-h-[100dvh] px-4 text-gray-100 md:px-8 lg:px-14">
+        <h2 className="mb-8 mt-16 text-2xl font-medium">
+          Results For: {query}
+        </h2>
+        <div className="grid grid-cols-3 gap-2 sm:grid-cols-5 lg:grid-cols-7">
+          {filteredMulti.map((media) => {
+            return (
+              // tvPoster
+              media.media_type === "tv" && (
+                <PosterTvLink
+                  posterId={media.id}
+                  posterName={media.name}
+                  posterPath={media.poster_path}
+                  posterRating={media.vote_average}
+                  key={media.id}
+                />
+              )
+            );
+          })}
         </div>
-      )}
+      </div>
     </>
   );
 }
