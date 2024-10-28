@@ -9,6 +9,7 @@ import VideosItem from "../components/VideosItem";
 import PhotosItem from "../components/PhotosItem";
 import TopNav from "../components/TopNav";
 import CarouselPerson from "../components/CarouselPerson";
+import CarouselTv from "../components/CarouselTv";
 
 function TvShowDetails() {
   const [selected, setSelected] = useState("overview");
@@ -52,15 +53,13 @@ function TvShowDetails() {
           </div>
         </div>
 
-        {/* Cast */}
-        <div className="mt-8 sm:mt-16">
+        {/* More movies like this */}
+        {/* <div className="mt-8 sm:mt-16">
           <h2 className="mb-2 px-4 text-xl font-medium text-gray-100 sm:mb-4 sm:text-2xl md:px-8 lg:px-14">
-            Cast
+            More Like This
           </h2>
-          <CarouselPerson creditsData={tvShowData.credits} />
-        </div>
-
-        {/* More tv shows like this */}
+          <CarouselTv mediaData={movieRecommendation} />
+        </div> */}
       </div>
     </>
   );
