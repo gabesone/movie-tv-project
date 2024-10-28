@@ -2,7 +2,11 @@ import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 
 import { getMulti } from "../services/apiMulti";
-import { PosterMovieLink, PosterTvLink } from "../components/Images";
+import {
+  PosterMovieLink,
+  PosterMulti,
+  PosterTvLink,
+} from "../components/Images";
 import { filterDuplicates } from "../helpers/filterDuplicates";
 
 function Search() {
@@ -44,30 +48,14 @@ function Search() {
           Results For: {query}
         </h2>
         <div className="grid grid-cols-3 gap-2 sm:grid-cols-5 lg:grid-cols-7">
-          {filteredMulti.map((media) => {
-            return (
-              // tvPoster
-              media.media_type === "tv" && (
-                <PosterTvLink
-                  posterId={media.id}
-                  posterName={media.name}
-                  posterPath={media.poster_path}
-                  posterRating={media.vote_average}
-                  key={media.id}
-                />
-              ),
-              // moviePoster
-              media.media_type === "movie" && (
-                <PosterMovieLink
-                  posterId={media.id}
-                  posterName={media.title}
-                  posterPath={media.poster_path}
-                  posterRating={media.vote_average}
-                  key={media.id}
-                />
-              )
-            );
-          })}
+          {filteredMulti.map((media) => (
+            <PosterMulti
+              mediaType={media.media_type}
+              posterId={media.id}
+              movieTitle={media.title ? media.title : ""}
+              key={media.id}
+            />
+          ))}
         </div>
       </div>
     </>

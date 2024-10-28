@@ -132,7 +132,7 @@ export function PosterMulti({
   mediaType,
 }) {
   return (
-    <Link to={`${mediaType}/${posterId}`} className="mb-2">
+    <Link to={`/${mediaType}/${posterId}`} className="mb-2">
       <div>
         <img
           src={`${TMDB_IMAGE_URL}${posterPath}`}
