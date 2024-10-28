@@ -53,6 +53,10 @@ function Search() {
               mediaType={media.media_type}
               posterId={media.id}
               movieTitle={media.title ? media.title : ""}
+              tvName={media.name ? media.name : ""}
+              personName={media.name ? media.name : ""}
+              posterPath={media.poster_path}
+              posterRating={media.vote_average}
               key={media.id}
             />
           ))}
