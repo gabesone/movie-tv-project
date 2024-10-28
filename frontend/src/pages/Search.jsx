@@ -1,7 +1,9 @@
 import { useState } from "react";
-import { getMulti } from "../services/apiMulti";
 import { useQuery } from "@tanstack/react-query";
-import Loading from "../components/Loading";
+
+import { getMulti } from "../services/apiMulti";
+import { PosterMovieLink, PosterTvLink } from "../components/Images";
+import { filterDuplicates } from "../helpers/filterDuplicates";
 
 function Search() {
   const [query, setQuery] = useState("");
@@ -11,7 +13,7 @@ function Search() {
     setQuery(e.target.value);
   }
 
-  const multiQuery = useQuery({
+  const { data, isLoading, isFetching, error } = useQuery({
     queryKey: ["multi", query],
     queryFn: async ({ signal }) => {
       return getMulti(query, signal);
@@ -19,11 +21,14 @@ function Search() {
     enabled: !!query,
     staleTime: 0,
   });
-  console.log(multiQuery);
+
+  const multiPosters = data ? data.results.map((multi) => multi) : [];
+  const filteredMulti = filterDuplicates(multiPosters);
+  console.log(filteredMulti);
 
   return (
     <>
-      <div className="sticky top-0 flex h-16 w-full items-center bg-[#222]">
+      <div className="sticky top-0 z-30 flex h-16 w-full items-center bg-[#222]">
         <input
           type="text"
           placeholder="Search for a movie, tv show or person..."
@@ -35,8 +40,26 @@ function Search() {
       </div>
 
       {query.length > 0 && (
-        <div className="h-[100dvh] text-gray-100">
-          <h2>{query}</h2>
+        <div className="h-[100dvh] px-4 text-gray-100 md:px-8 lg:px-14">
+          <h2 className="mb-8 mt-16 text-2xl font-medium">
+            Results For: {query}
+          </h2>
+          <div className="grid grid-cols-3 gap-2 sm:grid-cols-5 lg:grid-cols-7">
+            {filteredMulti.map((media) => {
+              return (
+                // tvPoster
+                media.media_type === "tv" && (
+                  <PosterTvLink
+                    posterId={media.id}
+                    posterName={media.name}
+                    posterPath={media.poster_path}
+                    posterRating={media.vote_average}
+                    key={media.id}
+                  />
+                )
+              );
+            })}
+          </div>
         </div>
       )}
     </>
