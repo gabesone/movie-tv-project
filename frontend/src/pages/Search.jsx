@@ -28,6 +28,7 @@ function Search() {
 
   const multiPosters = data ? data.results.map((multi) => multi) : [];
   const filteredMulti = filterDuplicates(multiPosters);
+
   console.log(filteredMulti);
 
   return (

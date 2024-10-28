@@ -9,5 +9,12 @@ export function filterDuplicates(posterArr) {
     }
   }
 
-  return filteredPoster;
+  const filterNull = filteredPoster.filter(
+    (poster) => poster.poster_path || poster.profile_path !== null,
+  );
+  const filterResult = filterNull.filter(
+    (poster) => poster.poster_path || poster.profile_path !== undefined,
+  );
+
+  return filterResult;
 }
