@@ -1,18 +1,25 @@
 import { useState } from "react";
 import { getMulti } from "../services/apiMulti";
+import { useQuery } from "@tanstack/react-query";
+import Loading from "../components/Loading";
 
 function Search() {
   const [query, setQuery] = useState("");
   function searchQuery(e) {
     e.preventDefault();
 
-    if (e.target.value.length > 3) {
-      setQuery(e.target.value);
-    }
+    setQuery(e.target.value);
   }
 
-  const data = getMulti(query);
-  console.log(data);
+  const multiQuery = useQuery({
+    queryKey: ["multi", query],
+    queryFn: async ({ signal }) => {
+      return getMulti(query, signal);
+    },
+    enabled: !!query,
+    staleTime: 0,
+  });
+  console.log(multiQuery);
 
   return (
     <>
