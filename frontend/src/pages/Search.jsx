@@ -1,9 +1,12 @@
-function Search({ isOpen }) {
+function Search() {
+  const x = "al";
   return (
     <>
-      {isOpen && (
-        <div className="sticky top-0 z-30 h-20 w-full bg-slate-500">
-          {/* <input type="text" /> */}
+      <div className="fixed h-20 w-full bg-slate-500"></div>
+
+      {x.length > 0 && (
+        <div>
+          <h2>Hello!</h2>
         </div>
       )}
     </>

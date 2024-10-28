@@ -12,6 +12,7 @@ import PageNotFound from "./pages/PageNotFound";
 import MovieGenre from "./pages/MovieGenre";
 import TvShowGenre from "./pages/TvShowGenre";
 import Person from "./pages/Person";
+import Search from "./pages/Search";
 
 const queryClient = new QueryClient();
 
@@ -42,6 +43,10 @@ const router = createBrowserRouter([
         element: <TvShowGenre />,
       },
       { path: "/person/:personId", element: <Person /> },
+      {
+        path: "/search",
+        element: <Search />,
+      },
     ],
   },
 ]);
