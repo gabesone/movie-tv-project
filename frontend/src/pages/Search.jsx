@@ -56,6 +56,7 @@ function Search() {
               tvName={media.name ? media.name : ""}
               personName={media.name ? media.name : ""}
               posterPath={media.poster_path}
+              profilePath={media.profile_path}
               posterRating={media.vote_average}
               key={media.id}
             />

@@ -125,6 +125,7 @@ export function PosterPersonLink({ posterPath, name, personId, character }) {
 export function PosterMulti({
   posterId,
   posterPath,
+  profilePath,
   tvName,
   movieTitle,
   personName,
@@ -135,7 +136,7 @@ export function PosterMulti({
     <Link to={`/${mediaType}/${posterId}`} className="mb-2">
       <div>
         <img
-          src={`${TMDB_IMAGE_URL}${posterPath}`}
+          src={`${TMDB_IMAGE_URL}${posterPath || profilePath}`}
           alt={`Poster of ${tvName || movieTitle || personName}`}
           className="transition-transform duration-300 hover:scale-[1.02]"
           width={226}
