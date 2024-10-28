@@ -41,7 +41,7 @@ function Search() {
       </div>
 
       <div className="px-4 text-gray-100 md:px-8 lg:px-14">
-        <h2 className="mb-8 mt-16 text-xl font-medium sm:text-2xl">
+        <h2 className="mb-6 mt-14 text-xl font-medium sm:text-2xl lg:mb-8 lg:mt-16">
           Results For: {query}
         </h2>
         <div className="grid grid-cols-3 gap-2 sm:grid-cols-5 lg:grid-cols-7">
