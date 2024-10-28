@@ -55,6 +55,16 @@ function Search() {
                   posterRating={media.vote_average}
                   key={media.id}
                 />
+              ),
+              // moviePoster
+              media.media_type === "movie" && (
+                <PosterMovieLink
+                  posterId={media.id}
+                  posterName={media.title}
+                  posterPath={media.poster_path}
+                  posterRating={media.vote_average}
+                  key={media.id}
+                />
               )
             );
           })}
