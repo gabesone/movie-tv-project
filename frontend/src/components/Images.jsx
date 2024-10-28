@@ -146,7 +146,7 @@ export function PosterMulti({
           width={226}
         />
         <div className="flex flex-col flex-nowrap">
-          <h3 className="mb-1 mt-3 text-sm font-medium text-gray-100 sm:text-base">
+          <h3 className="mb-1 mt-3 hidden text-sm font-medium text-gray-100 sm:block sm:text-base">
             {tvName || movieTitle || personName}
           </h3>
           {posterRating > 0 && (
