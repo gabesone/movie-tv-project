@@ -131,5 +131,24 @@ export function PosterMulti({
   posterRating,
   mediaType,
 }) {
-  return <Link to={`${mediaType}/${posterId}`} className="mb-2"></Link>;
+  return (
+    <Link to={`${mediaType}/${posterId}`} className="mb-2">
+      <div>
+        <img
+          src={`${TMDB_IMAGE_URL}${posterPath}`}
+          alt={`Poster of ${tvName || movieTitle || personName}`}
+          className="transition-transform duration-300 hover:scale-[1.02]"
+          width={226}
+        />
+        <div className="flex flex-col flex-nowrap">
+          <h3 className="mb-1 mt-3 text-sm font-medium text-gray-100 sm:text-base">
+            {tvName || movieTitle || personName}
+          </h3>
+          {posterRating && (
+            <p className="hidden text-gray-500 sm:block">star {posterRating}</p>
+          )}
+        </div>
+      </div>
+    </Link>
+  );
 }
