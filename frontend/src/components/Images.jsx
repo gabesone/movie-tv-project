@@ -59,7 +59,9 @@ export function PosterMovieLink({
         <h3 className="mb-1 mt-3 hidden truncate text-base font-medium text-gray-100 sm:block">
           {posterName}
         </h3>
-        <p className="hidden text-gray-500 sm:block">star {posterRating}</p>
+        {posterRating > 0 && (
+          <p className="hidden text-gray-500 sm:block">star {posterRating}</p>
+        )}
       </div>
     </Link>
   );
@@ -84,7 +86,9 @@ export function PosterTvLink({
           <h3 className="mb-1 mt-3 hidden truncate text-base font-medium text-gray-100 sm:block">
             {posterName}
           </h3>
-          <p className="hidden text-gray-500 sm:block">star {posterRating}</p>
+          {posterRating > 0 && (
+            <p className="hidden text-gray-500 sm:block">star {posterRating}</p>
+          )}
         </div>
       </div>
     </Link>
@@ -145,7 +149,7 @@ export function PosterMulti({
           <h3 className="mb-1 mt-3 text-sm font-medium text-gray-100 sm:text-base">
             {tvName || movieTitle || personName}
           </h3>
-          {posterRating && (
+          {posterRating > 0 && (
             <p className="hidden text-gray-500 sm:block">star {posterRating}</p>
           )}
         </div>

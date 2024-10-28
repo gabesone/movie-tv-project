@@ -2,11 +2,7 @@ import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 
 import { getMulti } from "../services/apiMulti";
-import {
-  PosterMovieLink,
-  PosterMulti,
-  PosterTvLink,
-} from "../components/Images";
+import { PosterMulti } from "../components/Images";
 import { filterDuplicates } from "../helpers/filterDuplicates";
 
 function Search() {
