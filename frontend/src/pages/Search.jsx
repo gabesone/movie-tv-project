@@ -25,7 +25,7 @@ function Search() {
   const multiPosters = data ? data.results.map((multi) => multi) : [];
   const filteredMulti = filterDuplicates(multiPosters);
 
-  console.log(filteredMulti);
+  console.log(data);
 
   return (
     <>
@@ -40,8 +40,8 @@ function Search() {
         />
       </div>
 
-      <div className="min-h-[100dvh] px-4 text-gray-100 md:px-8 lg:px-14">
-        <h2 className="mb-8 mt-16 text-2xl font-medium">
+      <div className="px-4 text-gray-100 md:px-8 lg:px-14">
+        <h2 className="mb-8 mt-16 text-xl font-medium sm:text-2xl">
           Results For: {query}
         </h2>
         <div className="grid grid-cols-3 gap-2 sm:grid-cols-5 lg:grid-cols-7">

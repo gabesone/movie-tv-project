@@ -5,11 +5,14 @@ const API_KEY2 = "103e37f7523217a4747a42c3c5fc6d74";
 
 // GET movies, tv shows or person
 
-export async function getMulti(q, signal) {
+export async function getMulti(q, signal, page) {
   try {
-    const res = await fetch(`${API_URL}?api_key=${API_KEY2}&query=${q}`, {
-      signal,
-    });
+    const res = await fetch(
+      `${API_URL}?api_key=${API_KEY2}&query=${q}&page=${page}`,
+      {
+        signal,
+      },
+    );
     const data = await res.json();
 
     if (!res.ok)
