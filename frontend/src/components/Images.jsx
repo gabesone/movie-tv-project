@@ -121,3 +121,15 @@ export function PosterPersonLink({ posterPath, name, personId, character }) {
     </Link>
   );
 }
+
+export function PosterMulti({
+  posterId,
+  posterPath,
+  tvName,
+  movieTitle,
+  personName,
+  posterRating,
+  mediaType,
+}) {
+  return <Link to={`${mediaType}/${posterId}`} className="mb-2"></Link>;
+}
