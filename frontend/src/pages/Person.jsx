@@ -129,7 +129,7 @@ function Person() {
             </ul>
           </nav>
 
-          <div className="px-4 md:px-8 xl:px-14">
+          <div>
             {/* If selected is equal known for */}
             {selected === "known for" && (
               <KnownFor

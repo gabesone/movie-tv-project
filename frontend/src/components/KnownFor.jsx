@@ -4,7 +4,7 @@ import { PosterMovieLink, PosterTvLink } from "./Images";
 
 function KnownFor({ filteredMovies, filteredTvShows }) {
   return (
-    <div>
+    <div className="px-4 md:px-8 xl:px-14">
       <div className="grid grid-cols-3 gap-2 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7">
         {filteredMovies?.map((movie) =>
           movie.poster_path ? (
