@@ -150,6 +150,7 @@ export function PosterMulti({
             {tvName || movieTitle || personName}
           </h3>
           {posterRating > 0 && (
+            // TODO: add star component based on rating of the poster
             <p className="hidden text-gray-500 sm:block">star {posterRating}</p>
           )}
         </div>
