@@ -1,3 +1,5 @@
+import { SlLink } from "react-icons/sl";
+
 import { mixMovieData } from "../helpers/mixData";
 import CarouselPerson from "./CarouselPerson";
 import { OverviewPoster } from "./Images";
@@ -86,6 +88,15 @@ function OverviewMovie({ mediaData }) {
                 </div>
               </ul>
             </div>
+          </div>
+
+          {/* Movie externals links */}
+          <div className="mt-4">
+            <ul>
+              <li>
+                <SlLink />
+              </li>
+            </ul>
           </div>
         </div>
       </div>
