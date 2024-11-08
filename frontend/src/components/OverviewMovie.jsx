@@ -92,8 +92,8 @@ function OverviewMovie({ mediaData }) {
           </div>
 
           {/* Movie externals links */}
-          <div className="mt-4">
-            <ul className="flex w-fit gap-4">
+          <div className="mt-8">
+            <ul className="flex w-fit gap-4 px-2">
               {mediaData.homepage && (
                 <External link={mediaData.homepage} name={mediaData.title}>
                   <SlLink />
