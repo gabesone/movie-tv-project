@@ -4,6 +4,7 @@ import { mixMovieData } from "../helpers/mixData";
 import CarouselPerson from "./CarouselPerson";
 import { OverviewPoster } from "./Images";
 import ItemList from "./ItemList";
+import External from "./External";
 
 function OverviewMovie({ mediaData }) {
   const {
@@ -92,10 +93,12 @@ function OverviewMovie({ mediaData }) {
 
           {/* Movie externals links */}
           <div className="mt-4">
-            <ul>
-              <li>
-                <SlLink />
-              </li>
+            <ul className="flex w-fit gap-4">
+              {mediaData.homepage && (
+                <External link={mediaData.homepage} name={mediaData.title}>
+                  <SlLink />
+                </External>
+              )}
             </ul>
           </div>
         </div>
