@@ -47,7 +47,7 @@ function OverviewMovie({ mediaData }) {
                 <li>genre </li>
                 <li>status</li>
                 <li>language</li>
-                <li>production</li>
+                <li>{production ? "production" : ""}</li>
               </ul>
             </div>
 
