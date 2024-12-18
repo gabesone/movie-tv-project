@@ -31,7 +31,7 @@ function Search() {
     <>
       <div className="sticky top-0 z-30 flex h-16 w-full items-center bg-[#222] xl:h-20">
         <input
-          type="text"
+          type="search"
           placeholder="Search for a movie, tv show or person..."
           className="w-full bg-[#222] px-4 font-normal text-gray-100 outline-none md:px-8 lg:px-14"
           autoFocus={true}
