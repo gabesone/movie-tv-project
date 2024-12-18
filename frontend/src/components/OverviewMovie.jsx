@@ -6,6 +6,7 @@ import { OverviewPoster } from "./Images";
 import ItemList from "./ItemList";
 import External from "./External";
 import { formatCurrency } from "../helpers/formatCurrency";
+import { stringDate } from "../helpers/discoverAge";
 
 function OverviewMovie({ mediaData }) {
   const {
@@ -55,7 +56,7 @@ function OverviewMovie({ mediaData }) {
             {/* Fields information */}
             <div>
               <ul className="space-y-1">
-                <ItemList>{released}</ItemList>
+                <ItemList>{stringDate(released)}</ItemList>
                 <ItemList>{runtime ? runtime : ""}</ItemList>
                 <ItemList isPerson={true} idPerson={director[0].id}>
                   {director[0].name}

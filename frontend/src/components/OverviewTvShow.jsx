@@ -2,6 +2,7 @@ import ItemList from "./ItemList";
 import { mixTvShowData } from "../helpers/mixData";
 import { OverviewPoster } from "./Images";
 import CarouselPerson from "./CarouselPerson";
+import { stringDate } from "../helpers/discoverAge";
 
 function OverviewTvShow({ mediaData }) {
   const {
@@ -50,8 +51,8 @@ function OverviewTvShow({ mediaData }) {
             {/* Fields information */}
             <div>
               <ul className="space-y-1">
-                <ItemList>{startDate}</ItemList>
-                <ItemList>{finishDate}</ItemList>
+                <ItemList>{stringDate(startDate)}</ItemList>
+                <ItemList>{stringDate(finishDate)}</ItemList>
 
                 <div className="flex flex-wrap gap-2">
                   {creator?.map((person) => (
