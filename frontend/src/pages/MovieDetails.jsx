@@ -14,8 +14,6 @@ function MovieDetails() {
   const [selected, setSelected] = useState("overview");
   const { movieData, movieRecommendation } = useLoaderData();
 
-  console.log(movieData);
-
   return (
     <>
       <TopNav>

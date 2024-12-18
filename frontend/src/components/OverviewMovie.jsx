@@ -5,6 +5,7 @@ import CarouselPerson from "./CarouselPerson";
 import { OverviewPoster } from "./Images";
 import ItemList from "./ItemList";
 import External from "./External";
+import { formatCurrency } from "../helpers/formatCurrency";
 
 function OverviewMovie({ mediaData }) {
   const {
@@ -59,8 +60,8 @@ function OverviewMovie({ mediaData }) {
                 <ItemList isPerson={true} idPerson={director[0].id}>
                   {director[0].name}
                 </ItemList>
-                <ItemList>{budget}</ItemList>
-                <ItemList>{revenue}</ItemList>
+                <ItemList>{formatCurrency(budget)}</ItemList>
+                <ItemList>{formatCurrency(revenue)}</ItemList>
 
                 <li className="flex flex-wrap">
                   {genre.map((genreItem) => (
