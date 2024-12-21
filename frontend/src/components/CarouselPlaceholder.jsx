@@ -7,9 +7,9 @@ import "swiper/css/scrollbar";
 import "swiper/css/free-mode";
 import { useEffect, useState } from "react";
 
-import { PosterMovieLink } from "./Images";
+import { PlaceholderImage } from "./Images";
 
-function CarouselMovie({ mediaData }) {
+function CarouselPlaceholder({ ArrPlaceholder }) {
   const [isNav, setIsNav] = useState(true);
   const [isFreeMode, setIsFreeMode] = useState(true);
 
@@ -63,18 +63,13 @@ function CarouselMovie({ mediaData }) {
       }}
       className="px-4 text-gray-100 md:px-8 lg:px-14"
     >
-      {mediaData?.results?.map((poster) => (
-        <SwiperSlide className="my-2" key={poster.id}>
-          <PosterMovieLink
-            posterId={poster.id}
-            posterName={poster.title ? poster.title : poster.name}
-            posterPath={poster.poster_path}
-            posterRating={poster.vote_average}
-          />
+      {ArrPlaceholder.map((placeholder, index) => (
+        <SwiperSlide className="my-2" key={index}>
+          <PlaceholderImage img={placeholder.src} alt={placeholder.alt} />
         </SwiperSlide>
       ))}
     </Swiper>
   );
 }
 
-export default CarouselMovie;
+export default CarouselPlaceholder;

@@ -16,7 +16,6 @@ export async function getMulti(q, signal) {
 
     return data;
   } catch (error) {
-    console.log(error.message);
     throw Error(error.message);
   }
 }

@@ -53,7 +53,7 @@ export function PosterMovieLink({
         <img
           src={`${TMDB_IMAGE_URL}${posterPath}`}
           alt={`Poster of ${posterName}`}
-          className="transition-transform duration-300 hover:scale-[1.02]"
+          className="lazyload fadeInPoster transition-transform duration-300 hover:scale-[1.02]"
           width={226}
         />
         <h3 className="mb-1 mt-3 hidden truncate text-base font-medium text-gray-100 sm:block">
@@ -64,6 +64,22 @@ export function PosterMovieLink({
         )}
       </div>
     </Link>
+  );
+}
+
+export function PlaceholderImage({ img, alt }) {
+  return (
+    <div>
+      <img
+        src={img}
+        alt={alt}
+        className="lazyload transition-transform duration-300 hover:scale-[1.02]"
+      />
+      <h3 className="mb-1 mt-3 hidden truncate text-base font-medium text-gray-100 sm:block">
+        Movie name
+      </h3>
+      <p className="hidden text-gray-500 sm:block">star</p>
+    </div>
   );
 }
 

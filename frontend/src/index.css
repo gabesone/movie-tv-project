@@ -17,7 +17,20 @@ body {
   animation: fadeOut 1s ease-in;
 }
 
+.fadeInPoster {
+  animation: fadeOutPoster 0.5s ease-in;
+}
+
 @keyframes fadeOut {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOutPoster {
   0% {
     opacity: 0;
   }

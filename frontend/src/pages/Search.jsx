@@ -25,8 +25,6 @@ function Search() {
   const multiPosters = data ? data.results.map((multi) => multi) : [];
   const filteredMulti = filterDuplicates(multiPosters);
 
-  console.log(data);
-
   return (
     <>
       <div className="sticky top-0 z-30 flex h-16 w-full items-center bg-[#222] xl:h-20">

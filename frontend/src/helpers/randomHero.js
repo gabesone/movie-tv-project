@@ -1,4 +1,4 @@
-function randomHero(movies, tv) {
+async function randomHero(movies, tv) {
   const randomMedia = 1 + Math.floor(Math.random() * 2);
 
   // If randomMedia is equal to 1 return a Movie

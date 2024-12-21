@@ -1,9 +1,10 @@
-import Carousel from "../components/CarouselMovie";
+import CarouselMovie from "../components/CarouselMovie";
 import { useMovieData } from "../hooks/useMovieData";
 import Loading from "../components/Loading";
 import TextLink from "../components/TextLink";
 import { randomMovieHero } from "../helpers/mixRandom";
 import Hero from "../components/Hero";
+import CarouselPlaceholder from "../components/CarouselPlaceholder";
 
 function Movie() {
   const {
@@ -13,30 +14,33 @@ function Movie() {
     upcomingMoviesQuery,
   } = useMovieData();
 
-  if (
-    nowPlayingMoviesQuery.isPending ||
-    popularMoviesQuery.isPending ||
-    topRatedMoviesQuery.isPending ||
-    upcomingMoviesQuery.isPending
-  )
-    return <Loading />;
+  // const heroMovie = randomMovieHero(
+  //   popularMoviesQuery.data,
+  //   topRatedMoviesQuery.data,
+  //   upcomingMoviesQuery.data,
+  //   nowPlayingMoviesQuery.data,
+  // );
 
-  const heroMovie = randomMovieHero(
-    popularMoviesQuery.data,
-    topRatedMoviesQuery.data,
-    upcomingMoviesQuery.data,
-    nowPlayingMoviesQuery.data,
-  );
+  const arrPlaceholder = Array.from({ length: 20 }, () => {
+    const img = document.createElement("img");
+    img.src = "/placeholder-img-370x556.webp";
+    img.alt = "Image Placeholder";
+    return img;
+  });
 
   return (
     <div>
-      <Hero media={heroMovie} mediaType="movie" />
+      {/* <Hero media={heroMovie} mediaType="movie" /> */}
 
       <div className="mt-8 space-y-4 sm:mt-16 sm:space-y-8">
         {/* Popular movies */}
         <div>
           <TextLink pathname="/movie/category/popular">Popular Movies</TextLink>
-          <Carousel mediaData={popularMoviesQuery.data} />
+          {popularMoviesQuery.isPending ? (
+            <CarouselPlaceholder ArrPlaceholder={arrPlaceholder} />
+          ) : (
+            <CarouselMovie mediaData={popularMoviesQuery.data} />
+          )}
         </div>
 
         {/* Top rated movies */}
@@ -44,7 +48,11 @@ function Movie() {
           <TextLink pathname="/movie/category/top_rated">
             Top rated movies
           </TextLink>
-          <Carousel mediaData={topRatedMoviesQuery.data} />
+          {topRatedMoviesQuery.isPending ? (
+            <CarouselPlaceholder ArrPlaceholder={arrPlaceholder} />
+          ) : (
+            <CarouselMovie mediaData={topRatedMoviesQuery.data} />
+          )}
         </div>
 
         {/* Upcoming movies */}
@@ -52,7 +60,11 @@ function Movie() {
           <TextLink pathname="/movie/category/upcoming">
             Upcoming movies
           </TextLink>
-          <Carousel mediaData={upcomingMoviesQuery.data} />
+          {topRatedMoviesQuery.isPending ? (
+            <CarouselPlaceholder ArrPlaceholder={arrPlaceholder} />
+          ) : (
+            <CarouselMovie mediaData={upcomingMoviesQuery.data} />
+          )}
         </div>
 
         {/* Now playing movies */}
@@ -60,7 +72,11 @@ function Movie() {
           <TextLink pathname="/movie/category/now_playing">
             now playing movies
           </TextLink>
-          <Carousel mediaData={nowPlayingMoviesQuery.data} />
+          {topRatedMoviesQuery.isPending ? (
+            <CarouselPlaceholder ArrPlaceholder={arrPlaceholder} />
+          ) : (
+            <CarouselMovie mediaData={nowPlayingMoviesQuery.data} />
+          )}
         </div>
       </div>
     </div>
