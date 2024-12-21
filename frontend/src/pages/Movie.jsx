@@ -1,6 +1,5 @@
 import CarouselMovie from "../components/CarouselMovie";
 import { useMovieData } from "../hooks/useMovieData";
-import Loading from "../components/Loading";
 import TextLink from "../components/TextLink";
 import { randomMovieHero } from "../helpers/mixRandom";
 import Hero from "../components/Hero";
