@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 
 function Footer() {
   return (
-    <footer className="mb-8 mt-16 flex-none space-y-6 px-4 text-sm font-medium text-gray-500 sm:space-y-4 md:px-8 xl:px-14">
+    <footer className="mb-8 mt-auto space-y-6 px-4 text-sm font-medium text-gray-500 sm:space-y-4 md:px-8 xl:px-14">
       <Link to="/">
         <img src="/my-films-logo.svg" alt="My Films Logo" />
       </Link>

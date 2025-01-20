@@ -2,8 +2,8 @@ import CarouselMovie from "../components/CarouselMovie";
 import { useMovieData } from "../hooks/useMovieData";
 import TextLink from "../components/TextLink";
 import { randomMovieHero } from "../helpers/mixRandom";
-import Hero from "../components/Hero";
 import CarouselPlaceholder from "../components/CarouselPlaceholder";
+import HeroMovie from "../components/HeroMovie";
 
 function Movie() {
   const {
@@ -13,12 +13,23 @@ function Movie() {
     upcomingMoviesQuery,
   } = useMovieData();
 
-  // const heroMovie = randomMovieHero(
-  //   popularMoviesQuery.data,
-  //   topRatedMoviesQuery.data,
-  //   upcomingMoviesQuery.data,
-  //   nowPlayingMoviesQuery.data,
-  // );
+  var heroMovie;
+
+  if (
+    nowPlayingMoviesQuery.isSuccess &&
+    popularMoviesQuery.isSuccess &&
+    topRatedMoviesQuery.isSuccess &&
+    upcomingMoviesQuery.isSuccess
+  ) {
+    heroMovie = randomMovieHero(
+      popularMoviesQuery.data,
+      topRatedMoviesQuery.data,
+      upcomingMoviesQuery.data,
+      nowPlayingMoviesQuery.data,
+    );
+  }
+
+  console.log(heroMovie);
 
   const arrPlaceholder = Array.from({ length: 20 }, () => {
     const img = document.createElement("img");
@@ -29,7 +40,7 @@ function Movie() {
 
   return (
     <div>
-      {/* <Hero media={heroMovie} mediaType="movie" /> */}
+      {/* <HeroMovie media={heroMovie} mediaType="movie" /> */}
 
       <div className="mt-8 space-y-4 sm:mt-16 sm:space-y-8">
         {/* Popular movies */}

@@ -9,8 +9,8 @@ function AppLayout() {
       <MainNav />
 
       <main className="overflow-y-auto">
-        <div className="flex flex-col">
-          <div className="h-[100dvh] flex-1">
+        <div className="flex min-h-full flex-col">
+          <div className="mb-16">
             <Outlet />
           </div>
 
