@@ -115,8 +115,8 @@ export function PersonPoster({ profilePath, profileName }) {
   return (
     <img
       src={TMDB_IMAGE_URL + profilePath}
-      alt={`Profile photo of ${profileName}`}
-      className="float-left mr-4 h-[14rem] w-[10rem] md:h-[18rem] md:w-[12rem] lg:float-none lg:mr-8 lg:h-[22rem] lg:w-[16rem] xl:mr-12 xl:h-[26rem] xl:w-[20rem]"
+      alt={profileName}
+      className="float-left mb-4 mr-4 w-[50%] lg:w-[100%]"
     />
   );
 }

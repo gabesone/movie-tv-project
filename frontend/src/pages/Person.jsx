@@ -67,22 +67,24 @@ function Person() {
       <TopNav>{name}</TopNav>
 
       <div>
-        <div className="mt-8 px-4 text-gray-100 md:px-8 lg:flex xl:px-14">
-          <PersonPoster profileName={name} profilePath={profile_path} />
+        <div className="mt-8 justify-center gap-8 px-4 text-gray-100 md:px-8 lg:flex xl:px-14">
+          <div className="">
+            <PersonPoster profileName={name} profilePath={profile_path} />
+          </div>
 
           <div>
             <h2 className="mb-4 text-xl font-medium lg:text-2xl">{name}</h2>
-            <div className="space-y-4">
+            <div className="mb-8 space-y-4">
               {formatedBiography?.map((paragraph, index) => (
-                <p key={index} className="max-w-[64ch] tracking-wide">
+                <p key={index} className="tracking-wide lg:max-w-[64ch]">
                   {paragraph}
                 </p>
               ))}
             </div>
 
             {/* TODO: ADD missing information and refactor to another component */}
-            <div className="flex flex-col flex-nowrap py-8">
-              <ul className="max-w-fit">
+            <div className="flex flex-col">
+              <ul>
                 <li className="grid grid-cols-2">
                   <div>Known For</div>
                   <div>{known_for_department}</div>
