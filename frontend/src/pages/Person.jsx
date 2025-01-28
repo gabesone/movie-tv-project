@@ -74,7 +74,9 @@ function Person() {
             <h2 className="mb-4 text-xl font-medium lg:text-2xl">{name}</h2>
             <div className="space-y-4">
               {formatedBiography?.map((paragraph, index) => (
-                <p key={index}>{paragraph}</p>
+                <p key={index} className="max-w-[64ch] tracking-wide">
+                  {paragraph}
+                </p>
               ))}
             </div>
 

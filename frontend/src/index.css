@@ -5,6 +5,11 @@
 html,
 body {
   height: 100%;
+  font-family: sans-serif;
+}
+
+.ch {
+  max-width: 64ch;
 }
 
 * {
