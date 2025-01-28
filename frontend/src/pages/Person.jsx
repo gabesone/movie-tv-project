@@ -35,6 +35,13 @@ function Person() {
     images,
   } = personQuery.data ? personQuery.data : [];
 
+  const formatedBiography = biography
+    ? biography
+        .split("\n")
+        .map((paragraph) => paragraph.trim())
+        .filter((p) => p !== "")
+    : [];
+
   const moviesPosters = combined_credits?.crew.filter(
     (movie) => movie.media_type === "movie",
   );
@@ -43,13 +50,10 @@ function Person() {
   );
 
   // TODO: add a new filter array from cast, based on role of person (director/actor)
-  console.log(personQuery.data);
 
   // Filtered movies and tv shows posters
   const filteredMovies = filterDuplicates(moviesPosters);
   const filteredTvShows = filterDuplicates(tvShowsPosters);
-
-  console.log(filteredMovies);
 
   const age = discoverAge(birthday);
   const strBirthday = stringDate(birthday);
@@ -68,7 +72,11 @@ function Person() {
 
           <div>
             <h2 className="mb-4 text-xl font-medium lg:text-2xl">{name}</h2>
-            <p className="">{biography}</p>
+            <div className="space-y-4">
+              {formatedBiography?.map((paragraph, index) => (
+                <p key={index}>{paragraph}</p>
+              ))}
+            </div>
 
             {/* TODO: ADD missing information and refactor to another component */}
             <div className="flex flex-col flex-nowrap py-8">
