@@ -7,6 +7,7 @@ import ItemList from "./ItemList";
 import External from "./External";
 import { formatCurrency } from "../helpers/formatCurrency";
 import { stringDate } from "../helpers/discoverAge";
+import ListDetails from "./ListDetails";
 
 function OverviewMovie({ mediaData }) {
   const {
@@ -33,64 +34,93 @@ function OverviewMovie({ mediaData }) {
 
         {/* Storyline */}
         <div className="flex flex-col">
-          <h2 className="mb-4 text-2xl font-medium">Storyline</h2>
-          <p className="font-medium">{mediaData.overview}</p>
+          <h2 className="mb-4 text-2xl">Storyline</h2>
+          <p className="mb-8">{mediaData.overview}</p>
 
           {/* Fields */}
           {/* TODO: Fix issue with flex flex-wrap, when a list grows much */}
-          <div className="mt-8 grid grid-cols-[8rem_1fr]">
-            <div className="capitalize">
-              <ul className="space-y-1">
-                <li>released</li>
-                <li>{runtime ? "runtime" : ""}</li>
-                <li>{director ? "director" : ""}</li>
-                <li>budget</li>
-                <li>renevue</li>
-                <li>genre </li>
-                <li>status</li>
-                <li>language</li>
-                <li>{production ? "production" : ""}</li>
-              </ul>
-            </div>
 
-            {/* Fields information */}
-            <div>
-              <ul className="space-y-1">
-                <ItemList>{stringDate(released)}</ItemList>
-                <ItemList>{runtime ? runtime : ""}</ItemList>
-                <ItemList isPerson={true} idPerson={director[0].id}>
-                  {director[0].name}
-                </ItemList>
-                <ItemList>{formatCurrency(budget)}</ItemList>
-                <ItemList>{formatCurrency(revenue)}</ItemList>
+          <div className="text-sm capitalize md:text-base">
+            <ul>
+              <ListDetails>
+                <div>{released ? "released" : undefined}</div>
+                <div>{stringDate(released)}</div>
+              </ListDetails>
 
-                <li className="flex flex-wrap">
-                  {genre.map((genreItem) => (
-                    <ItemList
-                      key={genreItem.id}
-                      idGenre={genreItem.id}
-                      isGenre={true}
-                      pathname="movie"
-                    >
-                      {genreItem.name}
-                    </ItemList>
-                  ))}
-                </li>
+              <ListDetails>
+                <div>{runtime ? "runtime" : undefined}</div>
+                <div>{runtime ? runtime : undefined}</div>
+              </ListDetails>
 
-                <ItemList>{status}</ItemList>
-                <ItemList>{language}</ItemList>
-
-                <div className="flex flex-wrap">
-                  {production.map((company, index) => (
-                    <ItemList key={company.id}>
-                      {production.length === index + 1
-                        ? company.name
-                        : company.name + ","}
-                    </ItemList>
-                  ))}
+              <ListDetails>
+                <div>{director ? "director" : undefined}</div>
+                <div>
+                  <ItemList isPerson={true} idPerson={director[0].id}>
+                    {director[0].name}
+                  </ItemList>
                 </div>
-              </ul>
-            </div>
+              </ListDetails>
+
+              {budget && (
+                <ListDetails>
+                  <div>budget </div>
+                  <div>{formatCurrency(budget)}</div>
+                </ListDetails>
+              )}
+
+              {revenue && (
+                <ListDetails>
+                  <div>revenue</div>
+                  <div>{formatCurrency(revenue)}</div>
+                </ListDetails>
+              )}
+
+              {genre && (
+                <ListDetails>
+                  <div>genre</div>
+                  <div className="flex flex-wrap gap-x-4">
+                    {genre.map((genreItem) => (
+                      <ItemList
+                        key={genreItem.id}
+                        idGenre={genreItem.id}
+                        isGenre={true}
+                        pathname="movie"
+                      >
+                        {genreItem.name}
+                      </ItemList>
+                    ))}
+                  </div>
+                </ListDetails>
+              )}
+              {status && (
+                <ListDetails>
+                  <div>status</div>
+                  <div>{status}</div>
+                </ListDetails>
+              )}
+
+              {language && (
+                <ListDetails>
+                  <div>language</div>
+                  <div>{language}</div>
+                </ListDetails>
+              )}
+
+              {production && (
+                <ListDetails>
+                  <div>production</div>
+                  <div className="flex flex-wrap hyphens-auto">
+                    {production.map((company, index) => (
+                      <ItemList key={company.id}>
+                        {production.length === index + 1
+                          ? company.name
+                          : company.name + ","}
+                      </ItemList>
+                    ))}
+                  </div>
+                </ListDetails>
+              )}
+            </ul>
           </div>
 
           {/* Movie externals links */}

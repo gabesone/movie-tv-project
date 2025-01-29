@@ -10,18 +10,19 @@ function ItemList({
 }) {
   if (isPerson)
     return (
-      <li>
-        <Link to={`/person/${idPerson}`} className="text-purple-600 underline">
-          {children}
-        </Link>
-      </li>
+      <Link
+        to={`/person/${idPerson}`}
+        className="text-purple-600 underline hover:no-underline"
+      >
+        {children}
+      </Link>
     );
 
   if (isGenre)
     return (
       <Link
         to={`/genre/${idGenre}/${pathname}`}
-        className="pr-2 text-purple-600 underline"
+        className="text-purple-600 underline hover:no-underline"
       >
         {children}
       </Link>
