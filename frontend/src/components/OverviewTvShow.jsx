@@ -1,8 +1,12 @@
+import { SlLink } from "react-icons/sl";
+
 import ItemList from "./ItemList";
 import { mixTvShowData } from "../helpers/mixData";
 import { OverviewPoster } from "./Images";
 import CarouselPerson from "./CarouselPerson";
 import { stringDate } from "../helpers/discoverAge";
+import ListDetails from "./ListDetails";
+import External from "./External";
 
 function OverviewTvShow({ mediaData }) {
   const {
@@ -29,72 +33,115 @@ function OverviewTvShow({ mediaData }) {
 
         {/* Storyline */}
         <div className="flex flex-col">
-          <h2 className="mb-4 text-2xl font-medium">Storyline</h2>
-          <p className="font-medium">{mediaData.overview}</p>
+          <h2 className="mb-4 text-2xl">Storyline</h2>
+          <p className="mb-8">{mediaData.overview}</p>
 
           {/* Fields */}
-          <div className="mt-8 grid grid-cols-[8rem_1fr]">
-            <div className="capitalize">
-              <ul className="space-y-1">
-                <li>first aired</li>
-                <li>last aired</li>
-                {creator.length > 0 && <li>creator</li>}
-                <li>gene</li>
-                <li>seasons</li>
-                <li>episodes</li>
-                <li>status</li>
-                <li>language</li>
-                <li>network</li>
-              </ul>
-            </div>
+          <div className="text-sm capitalize md:text-base">
+            <ul>
+              {startDate && (
+                <ListDetails>
+                  <div>first aired</div>
+                  <ItemList>{stringDate(startDate)}</ItemList>
+                </ListDetails>
+              )}
 
-            {/* Fields information */}
-            <div>
-              <ul className="space-y-1">
-                <ItemList>{stringDate(startDate)}</ItemList>
-                <ItemList>{stringDate(finishDate)}</ItemList>
+              {finishDate && (
+                <ListDetails>
+                  <div>last aired</div>
+                  <ItemList>{stringDate(finishDate)}</ItemList>
+                </ListDetails>
+              )}
 
-                <div className="flex flex-wrap gap-2">
-                  {creator?.map((person) => (
-                    <ItemList
-                      key={person.id}
-                      isPerson={true}
-                      idPerson={person.id}
-                    >
-                      {person.name}
-                    </ItemList>
-                  ))}
-                </div>
+              {creator.length > 0 && (
+                <ListDetails>
+                  <div>creator</div>
+                  <div className="flex flex-wrap gap-x-4">
+                    {creator?.map((person) => (
+                      <ItemList
+                        key={person.id}
+                        isPerson={true}
+                        idPerson={person.id}
+                      >
+                        {person.name}
+                      </ItemList>
+                    ))}
+                  </div>
+                </ListDetails>
+              )}
 
-                <li className="flex flex-wrap">
-                  {genre.map((genreItem) => (
-                    <ItemList
-                      key={genreItem.id}
-                      idGenre={genreItem.id}
-                      isGenre={true}
-                      pathname="tv"
-                    >
-                      {genreItem.name}
-                    </ItemList>
-                  ))}
-                </li>
+              {genre && (
+                <ListDetails>
+                  <div>genre</div>
+                  <div className="flex flex-wrap gap-x-4">
+                    {genre.map((genreItem) => (
+                      <ItemList
+                        key={genreItem.id}
+                        idGenre={genreItem.id}
+                        isGenre={true}
+                        pathname="tv"
+                      >
+                        {genreItem.name}
+                      </ItemList>
+                    ))}
+                  </div>
+                </ListDetails>
+              )}
 
-                <ItemList>{seasons}</ItemList>
-                <ItemList>{episodes}</ItemList>
-                <ItemList>{status}</ItemList>
-                <ItemList>{language}</ItemList>
+              {seasons && (
+                <ListDetails>
+                  <div>seasons</div>
+                  <ItemList>{seasons}</ItemList>
+                </ListDetails>
+              )}
 
-                <div className="flex flex-wrap">
-                  {network.map((company, index) => (
-                    <ItemList key={company.id}>
-                      {network.length === index + 1
-                        ? company.name
-                        : company.name + ","}
-                    </ItemList>
-                  ))}
-                </div>
-              </ul>
-            </div>
+              {episodes && (
+                <ListDetails>
+                  <div>episodes</div>
+                  <ItemList>{episodes}</ItemList>
+                </ListDetails>
+              )}
+
+              {status && (
+                <ListDetails>
+                  <div>status</div>
+                  <ItemList>{status}</ItemList>
+                </ListDetails>
+              )}
+
+              {language && (
+                <ListDetails>
+                  <div>language</div>
+                  <ItemList>{language}</ItemList>
+                </ListDetails>
+              )}
+
+              {network && (
+                <ListDetails>
+                  <div>network</div>
+                  <div className="flex flex-wrap gap-x-4">
+                    {network.map((company, index) => (
+                      <ItemList key={company.id}>
+                        {network.length === index + 1
+                          ? company.name
+                          : company.name + ","}
+                      </ItemList>
+                    ))}
+                  </div>
+                </ListDetails>
+              )}
+            </ul>
+          </div>
+
+          {/* TV Show externals links */}
+          <div className="mt-8">
+            <ul className="flex w-fit gap-4 px-2">
+              {mediaData.homepage && (
+                <External link={mediaData.homepage} name={mediaData.title}>
+                  <SlLink />
+                </External>
+              )}
+            </ul>
           </div>
         </div>
       </div>
