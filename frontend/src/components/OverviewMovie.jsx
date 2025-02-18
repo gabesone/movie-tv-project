@@ -38,8 +38,6 @@ function OverviewMovie({ mediaData }) {
           <p className="mb-8">{mediaData.overview}</p>
 
           {/* Fields */}
-          {/* TODO: Fix issue with flex flex-wrap, when a list grows much */}
-
           <div className="text-sm capitalize md:text-base">
             <ul>
               <ListDetails>

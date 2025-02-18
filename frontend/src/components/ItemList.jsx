@@ -28,7 +28,7 @@ function ItemList({
       </Link>
     );
 
-  return <li className="pr-2">{children}</li>;
+  return <p className="pr-2">{children}</p>;
 }
 
 export default ItemList;
