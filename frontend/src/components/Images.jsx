@@ -10,8 +10,7 @@ export function Poster({ posterPath }) {
       loading="lazy"
       src={`${TMDB_IMAGE_URL}${posterPath}`}
       alt="Poster"
-      width="100%"
-      height="100%"
+      className="block w-full"
     />
   );
 }
@@ -22,8 +21,7 @@ export function Backdrop({ backdropPath }) {
       loading="lazy"
       src={`${TMDB_BACKDROP_URL}${backdropPath}`}
       alt="Backdrop"
-      width="100%"
-      height="100%"
+      className="block w-full"
     />
   );
 }
@@ -34,9 +32,7 @@ export function OverviewPoster({ posterPath, posterName }) {
       loading="lazy"
       src={`${TMDB_IMAGE_URL}${posterPath}`}
       alt={`Poster of ${posterName}`}
-      width="100%"
-      height="100%"
-      className="max-w-80"
+      className="block w-full max-w-80"
     />
   );
 }
@@ -49,11 +45,11 @@ export function PosterMovieLink({
 }) {
   return (
     <Link to={`/movie/${posterId}`} className="mb-2">
-      <div>
+      <div className="fadeInPoster transition-transform duration-300 will-change-transform hover:scale-[1.02]">
         <img
           src={`${TMDB_IMAGE_URL}${posterPath}`}
-          alt={`Poster of ${posterName}`}
-          className="fadeInPoster transition-transform duration-300 hover:scale-[1.02]"
+          alt={posterName}
+          className="block w-full"
           loading="lazy"
         />
         <h3 className="mb-1 mt-3 hidden truncate text-base font-medium text-gray-100 sm:block">
@@ -69,12 +65,8 @@ export function PosterMovieLink({
 
 export function PlaceholderImage({ img, alt }) {
   return (
-    <div>
-      <img
-        src={img}
-        alt={alt}
-        className="lazyload transition-transform duration-300 hover:scale-[1.02]"
-      />
+    <div className="transition-transform duration-300 will-change-transform hover:scale-[1.02]">
+      <img src={img} alt={alt} className="lazyload block w-full" />
       <h3 className="mb-1 mt-3 hidden truncate text-base font-medium text-gray-100 sm:block">
         Movie name
       </h3>
@@ -124,18 +116,18 @@ export function PersonPoster({ profilePath, profileName }) {
 export function PosterPersonLink({ posterPath, name, personId, character }) {
   return (
     <Link to={`/person/${personId}`} className="mb-2">
-      <div>
+      <div className="transition-transform duration-300 will-change-transform hover:scale-[1.02]">
         <img
           src={`${TMDB_IMAGE_URL}${posterPath}`}
-          alt={`Poster of ${name}`}
-          className="transition-transform duration-300 hover:scale-[1.02]"
+          alt={name}
+          className="block w-full"
           width={226}
         />
         <div className="flex flex-col flex-nowrap">
           <h3 className="mb-1 mt-3 text-sm font-medium text-gray-100 sm:text-base">
             {name}
           </h3>
-          <p className="text-xs text-gray-500 sm:text-sm">{character}</p>
+          <p className="text-xs text-gray-500 sm:text-sm">as {character}</p>
         </div>
       </div>
     </Link>
