@@ -83,11 +83,11 @@ export function PosterTvLink({
 }) {
   return (
     <Link to={`/tv/${posterId}`} className="mb-2">
-      <div>
+      <div className="transition-transform duration-300 will-change-transform hover:scale-[1.02]">
         <img
           src={`${TMDB_IMAGE_URL}${posterPath}`}
-          alt={`Poster of ${posterName}`}
-          className="transition-transform duration-300 hover:scale-[1.02]"
+          alt={posterName}
+          className="block w-full"
           loading="lazy"
         />
         <div className="flex flex-col">
@@ -146,11 +146,11 @@ export function PosterMulti({
 }) {
   return (
     <Link to={`/${mediaType}/${posterId}`} className="mb-2">
-      <div>
+      <div className="transition-transform duration-300 will-change-transform hover:scale-[1.02]">
         <img
           src={`${TMDB_IMAGE_URL}${posterPath || profilePath}`}
-          alt={`Poster of ${tvName || movieTitle || personName}`}
-          className="transition-transform duration-300 hover:scale-[1.02]"
+          alt={tvName || movieTitle || personName}
+          className="block w-full"
           width={226}
         />
         <div className="flex flex-col flex-nowrap">

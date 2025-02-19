@@ -51,12 +51,14 @@ function Hero({ media, mediaType }) {
                 position: "absolute",
                 right: "0",
                 top: "0",
-                bottom: "0",
                 left: "0",
                 backgroundSize: "cover",
                 backgroundRepeat: "no-repeat",
-                height: "100%",
                 width: "100%",
+                display: "block",
+                objectFit: "cover",
+                aspectRatio: "1 / 1",
+                height: "100%",
               }}
             >
               {/* Play icon */}
