@@ -56,7 +56,12 @@ export function PosterMovieLink({
           {posterName}
         </h3>
         {posterRating > 0 && (
-          <p className="hidden text-gray-500 sm:block">star {posterRating}</p>
+          <div className="hidden w-fit text-gray-400 sm:block">
+            <img src="/star.svg" alt="Star" className="mr-2 inline-block" />
+            <p className="inline-block text-sm">
+              {Number(posterRating).toFixed(1)}
+            </p>
+          </div>
         )}
       </div>
     </Link>
@@ -67,10 +72,10 @@ export function PlaceholderImage({ img, alt }) {
   return (
     <div className="transition-transform duration-300 will-change-transform hover:scale-[1.02]">
       <img src={img} alt={alt} className="lazyload block w-full" />
-      <h3 className="mb-1 mt-3 hidden truncate text-base font-medium text-gray-100 sm:block">
-        Movie name
-      </h3>
-      <p className="hidden text-gray-500 sm:block">star</p>
+      <h3 className="mb-1 mt-3 hidden truncate text-base font-medium text-gray-100 sm:block"></h3>
+      <div className="hidden w-fit text-gray-400 sm:block">
+        <img src="/star.svg" alt="Star" className="mr-2 inline-block" />
+      </div>
     </div>
   );
 }
@@ -95,7 +100,12 @@ export function PosterTvLink({
             {posterName}
           </h3>
           {posterRating > 0 && (
-            <p className="hidden text-gray-500 sm:block">star {posterRating}</p>
+            <div className="hidden w-fit text-gray-400 sm:block">
+              <img src="/star.svg" alt="Star" className="mr-2 inline-block" />
+              <p className="inline-block text-sm">
+                {Number(posterRating).toFixed(1)}
+              </p>
+            </div>
           )}
         </div>
       </div>
@@ -127,7 +137,7 @@ export function PosterPersonLink({ posterPath, name, personId, character }) {
           <h3 className="mb-1 mt-3 text-sm font-medium text-gray-100 sm:text-base">
             {name}
           </h3>
-          <p className="text-xs text-gray-500 sm:text-sm">as {character}</p>
+          <p className="text-xs text-gray-500 sm:text-sm">{character}</p>
         </div>
       </div>
     </Link>
@@ -158,8 +168,12 @@ export function PosterMulti({
             {tvName || movieTitle || personName}
           </h3>
           {posterRating > 0 && (
-            // TODO: add star component based on rating of the poster
-            <p className="hidden text-gray-500 sm:block">star {posterRating}</p>
+            <div className="hidden w-fit text-gray-400 sm:block">
+              <img src="/star.svg" alt="Star" className="mr-2 inline-block" />
+              <p className="inline-block text-sm">
+                {Number(posterRating).toFixed(1)}
+              </p>
+            </div>
           )}
         </div>
       </div>

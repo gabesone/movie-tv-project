@@ -16,12 +16,10 @@ function CarouselTv({ mediaData }) {
   // Change the behavior of slides based on width screen
   function setSlidesView() {
     if (window.innerWidth < 768) {
-      setIsNav(false);
       setIsFreeMode(true);
     }
 
     if (window.innerWidth >= 768) {
-      setIsNav(true);
       setIsFreeMode(false);
     }
   }
@@ -40,17 +38,17 @@ function CarouselTv({ mediaData }) {
   return (
     <Swiper
       modules={[Navigation, Pagination, FreeMode]}
+      speed={800}
       spaceBetween={8}
       slidesPerView={3}
-      navigation={isNav}
       freeMode={isFreeMode}
       breakpoints={{
         640: {
-          slidesPerView: 4,
+          slidesPerView: 3,
         },
         768: {
-          slidesPerView: 5,
-          slidesPerGroup: 5,
+          slidesPerView: 4,
+          slidesPerGroup: 4,
         },
         1024: {
           slidesPerView: 6,

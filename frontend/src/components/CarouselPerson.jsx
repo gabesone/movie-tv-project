@@ -46,11 +46,11 @@ function CarouselPerson({ creditsData }) {
       freeMode={isFreeMode}
       breakpoints={{
         640: {
-          slidesPerView: 4,
+          slidesPerView: 3,
         },
         768: {
-          slidesPerView: 5,
-          slidesPerGroup: 5,
+          slidesPerView: 4,
+          slidesPerGroup: 4,
         },
         1024: {
           slidesPerView: 6,
