@@ -5,7 +5,7 @@ import CarouselPerson from "./CarouselPerson";
 import { OverviewPoster } from "./Images";
 import ItemList from "./ItemList";
 import External from "./External";
-import { formatCurrency } from "../helpers/formatCurrency";
+import { formatCurrency, formatRuntime } from "../helpers/formatCurrency";
 import { stringDate } from "../helpers/discoverAge";
 import ListDetails from "./ListDetails";
 
@@ -23,6 +23,8 @@ function OverviewMovie({ mediaData }) {
     posterPath,
     title,
   } = mixMovieData(mediaData);
+
+  const running_time = formatRuntime(runtime);
 
   return (
     <>
@@ -47,7 +49,11 @@ function OverviewMovie({ mediaData }) {
 
               <ListDetails>
                 <div>{runtime ? "runtime" : undefined}</div>
-                <div>{runtime ? runtime : undefined}</div>
+                <div>
+                  {runtime
+                    ? `${running_time.hours} ${running_time.minutes}`
+                    : undefined}
+                </div>
               </ListDetails>
 
               <ListDetails>
