@@ -40,7 +40,7 @@ function Movie() {
 
   return (
     <div>
-      {/* <HeroMovie media={heroMovie} mediaType="movie" /> */}
+      <HeroMovie image={heroMovie} />
 
       <div className="mt-8 space-y-4 sm:mt-16 sm:space-y-8">
         {/* Popular movies */}
