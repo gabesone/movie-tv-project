@@ -24,17 +24,15 @@ export function mixHeroData(mediaData) {
   };
 }
 
-export function heroMovie(movie) {
-  const movieData = {
-    id: movie.id ? movie.id : "",
-    title: movie.title ? movie.title : "",
-    year: movie.release_date ? movie.release_date : "",
-    rating: movie.vote_average ? movie.vote_average : "",
-    backdrop: movie.backdrop_path ? movie.backdrop_path : "",
-    description: movie.overview ? movie.overview : "",
+export async function heroMovie(movie = {}) {
+  return {
+    id: movie?.id ?? "",
+    title: movie?.title ?? "",
+    year: movie?.release_date ?? "",
+    rating: movie?.vote_average ?? "",
+    backdrop: movie?.backdrop_path ?? "",
+    description: movie?.overview ?? "",
   };
-
-  return { movieData };
 }
 
 export function mixMovieData(mediaData) {

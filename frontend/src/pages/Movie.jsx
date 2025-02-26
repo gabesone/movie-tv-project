@@ -4,6 +4,7 @@ import TextLink from "../components/TextLink";
 import { randomMovieHero } from "../helpers/mixRandom";
 import CarouselPlaceholder from "../components/CarouselPlaceholder";
 import HeroMovie from "../components/HeroMovie";
+import Loading from "../components/Loading";
 
 function Movie() {
   const {
@@ -16,10 +17,10 @@ function Movie() {
   var heroMovie;
 
   if (
-    nowPlayingMoviesQuery.isSuccess &&
-    popularMoviesQuery.isSuccess &&
-    topRatedMoviesQuery.isSuccess &&
-    upcomingMoviesQuery.isSuccess
+    !nowPlayingMoviesQuery.isPending &&
+    !popularMoviesQuery.isPending &&
+    !topRatedMoviesQuery.isPending &&
+    !upcomingMoviesQuery.isPending
   ) {
     heroMovie = randomMovieHero(
       popularMoviesQuery.data,
@@ -29,18 +30,21 @@ function Movie() {
     );
   }
 
-  console.log(heroMovie);
-
   const arrPlaceholder = Array.from({ length: 20 }, () => {
     const img = document.createElement("img");
     img.src = "/placeholder-img-370x556.webp";
-    img.alt = "Image Placeholder";
+    img.alt = "Placeholder";
     return img;
   });
 
   return (
     <div>
-      <HeroMovie image={heroMovie} />
+      {nowPlayingMoviesQuery.isPending ? (
+        <HeroMovie />
+      ) : (
+        <HeroMovie movieMedia={heroMovie} />
+      )}
+      {/* <HeroMovie /> */}
 
       <div className="mt-8 space-y-4 sm:mt-16 sm:space-y-8">
         {/* Popular movies */}
