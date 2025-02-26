@@ -4,6 +4,8 @@ import { SlControlPlay } from "react-icons/sl";
 
 import { heroMovie } from "../helpers/mixData";
 import Loading from "./Loading";
+import { getMovie } from "../services/apiMovie";
+import { formatRuntime } from "../helpers/formatCurrency";
 
 const TMDB_IMAGE_HERO_URL = "https://image.tmdb.org/t/p/original";
 const TMDB_IMAGE_HERO_LESS_URL = "https://image.tmdb.org/t/p/w500";
@@ -17,16 +19,23 @@ function HeroMovie({ movieMedia }) {
     const data = await heroMovie(movieData);
     return data;
   }
+
   useEffect(() => {
     async function fetchData() {
       if (!movieMedia) return;
+      const movieData = await getMovie(movieMedia);
+      console.log(movieData);
 
-      const data = await convertMovie(movieMedia);
+      const data = await convertMovie(movieData);
       setMovie(data);
     }
 
     fetchData();
   }, [movieMedia]);
+
+  const formatedDuration = movie?.duration
+    ? formatRuntime(movie?.duration)
+    : "";
 
   console.log(movie);
 
@@ -48,22 +57,33 @@ function HeroMovie({ movieMedia }) {
       {/* Panel */}
       <div className="order-1 px-14 text-gray-100">
         <div className="flex h-full flex-col justify-center gap-8">
-          <button className="w-fit">
+          <Link to={`/movie/${movie.id}`} className="w-fit">
             <h2 className="text-5xl">{movie.title}</h2>
-          </button>
-          <div className="flex items-center gap-2">
-            <img src="/star.svg" alt="Star" className="block h-6 w-5" />
+          </Link>
+          <div className="flex items-center gap-2 text-gray-400">
+            {movie.title && (
+              <img src="/star.svg" alt="Star" className="block h-6 w-5" />
+            )}
             <p className="block">
               {movie?.rating ? Number(movie.rating).toFixed(1) : undefined}
             </p>
             <p>{movie.year}</p>
+            <p>
+              {formatedDuration.hours} {formatedDuration.minutes}
+            </p>
           </div>
           <p className="hyphens-auto">{movie.description}</p>
+          <div>
+            {movie.title && (
+              <button className="w-fit bg-gray-800 px-8 py-2 font-semibold text-gray-100 transition-colors duration-300 hover:bg-gray-600">
+                Watch Trailer
+              </button>
+            )}
+          </div>
         </div>
       </div>
     </div>
   );
 }
-// className="block aspect-square max-h-[40rem] min-h-[16rem] w-full object-cover md:min-h-[24rem] lg:min-h-[32rem]"
 
 export default HeroMovie;

@@ -52,7 +52,10 @@ export function PosterMovieLink({
           className="block w-full"
           loading="lazy"
         />
-        <h3 className="mb-1 mt-3 hidden truncate text-base font-medium text-gray-100 sm:block">
+        <h3
+          aria-hidden="true"
+          className="mb-1 mt-3 hidden truncate text-base font-medium text-gray-100 sm:block"
+        >
           {posterName}
         </h3>
         {posterRating > 0 && (

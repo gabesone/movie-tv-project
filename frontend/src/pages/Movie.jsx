@@ -39,12 +39,14 @@ function Movie() {
 
   return (
     <div>
-      {nowPlayingMoviesQuery.isPending ? (
+      {nowPlayingMoviesQuery.isPending ||
+      popularMoviesQuery.isPending ||
+      topRatedMoviesQuery.isPending ||
+      upcomingMoviesQuery.isPending ? (
         <HeroMovie />
       ) : (
-        <HeroMovie movieMedia={heroMovie} />
+        <HeroMovie movieMedia={heroMovie.id} />
       )}
-      {/* <HeroMovie /> */}
 
       <div className="mt-8 space-y-4 sm:mt-16 sm:space-y-8">
         {/* Popular movies */}

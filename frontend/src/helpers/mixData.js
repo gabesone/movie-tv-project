@@ -31,7 +31,8 @@ export async function heroMovie(movie = {}) {
     year: movie?.release_date ?? "",
     rating: movie?.vote_average ? Number(movie.vote_average) : undefined,
     backdrop: movie?.backdrop_path ?? "",
-    description: movie.overview ?? "",
+    description: movie?.overview ?? "",
+    duration: movie?.runtime ?? "",
   };
 }
 
