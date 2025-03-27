@@ -56,6 +56,10 @@ function CarouselMovie({ mediaData }) {
           slidesPerGroup: 5,
         },
         1280: {
+          slidesPerView: 6,
+          slidesPerGroup: 6,
+        },
+        1563: {
           slidesPerView: 7,
           slidesPerGroup: 7,
         },

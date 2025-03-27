@@ -6,6 +6,13 @@ import CarouselPlaceholder from "../components/CarouselPlaceholder";
 import HeroMovie from "../components/HeroMovie";
 import Loading from "../components/Loading";
 
+export const arrPlaceholder = Array.from({ length: 20 }, () => {
+  const img = document.createElement("img");
+  img.src = "/placeholder-img-370x556.webp";
+  img.alt = "Placeholder";
+  return img;
+});
+
 function Movie() {
   const {
     nowPlayingMoviesQuery,
@@ -29,13 +36,6 @@ function Movie() {
       nowPlayingMoviesQuery.data,
     );
   }
-
-  const arrPlaceholder = Array.from({ length: 20 }, () => {
-    const img = document.createElement("img");
-    img.src = "/placeholder-img-370x556.webp";
-    img.alt = "Placeholder";
-    return img;
-  });
 
   return (
     <div>

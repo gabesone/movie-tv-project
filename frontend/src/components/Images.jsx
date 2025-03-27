@@ -84,33 +84,54 @@ export function PlaceholderImage({ img, alt }) {
 }
 
 export function PosterTvLink({
-  posterPath,
-  posterName,
-  posterId,
-  posterRating,
+  // posterPath,
+  // posterName,
+  // posterId,
+  // posterRating,
+  poster,
 }) {
   return (
-    <Link to={`/tv/${posterId}`} className="mb-2">
-      <div className="transition-transform duration-300 will-change-transform hover:scale-[1.02]">
-        <img
-          src={`${TMDB_IMAGE_URL}${posterPath}`}
-          alt={posterName}
-          className="block w-full"
-          loading="lazy"
-        />
-        <div className="flex flex-col">
+    <Link to={`/tv/`} className="bg-sky-400">
+      <div className="fadeInPoster w-80 transition-transform duration-300 will-change-transform hover:scale-[1.02]">
+        {poster ? (
+          <img
+            src={`${TMDB_IMAGE_URL}${poster.poster_path}`}
+            alt={poster.name}
+            className="block w-full"
+            loading="lazy"
+          />
+        ) : (
+          <div className="relative bg-slate-800 pb-[200%]">
+            <p></p>
+            <span className="absolute bottom-0 left-0 right-0 top-0 block h-full w-full">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="40"
+                height="40"
+                viewBox="0 0 24 24"
+                fillRule="evenodd"
+                clipRule="evenodd"
+                fill="#999"
+              >
+                <path d="M24 22h-24v-20h24v20zm-1-19h-22v18h22v-18zm-1 16h-19l4-7.492 3 3.048 5.013-7.556 6.987 12zm-11.848-2.865l-2.91-2.956-2.574 4.821h15.593l-5.303-9.108-4.806 7.243zm-4.652-11.135c1.38 0 2.5 1.12 2.5 2.5s-1.12 2.5-2.5 2.5-2.5-1.12-2.5-2.5 1.12-2.5 2.5-2.5zm0 1c.828 0 1.5.672 1.5 1.5s-.672 1.5-1.5 1.5-1.5-.672-1.5-1.5.672-1.5 1.5-1.5z" />
+              </svg>
+            </span>
+          </div>
+        )}
+
+        {/* <div className="flex flex-col">
           <h3 className="mb-1 mt-3 hidden truncate text-base font-medium text-gray-100 sm:block">
-            {posterName}
+            {poster.name}
           </h3>
-          {posterRating > 0 && (
+          {poster.vote_average > 0 && (
             <div className="hidden w-fit text-gray-400 sm:block">
               <img src="/star.svg" alt="Star" className="mr-2 inline-block" />
               <p className="inline-block text-sm">
-                {Number(posterRating).toFixed(1)}
+                {Number(poster.vote_average).toFixed(1)}
               </p>
             </div>
           )}
-        </div>
+        </div> */}
       </div>
     </Link>
   );

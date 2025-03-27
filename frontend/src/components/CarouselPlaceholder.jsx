@@ -42,7 +42,6 @@ function CarouselPlaceholder({ ArrPlaceholder }) {
       modules={[Navigation, Pagination, FreeMode]}
       spaceBetween={8}
       slidesPerView={3}
-      navigation={isNav}
       freeMode={isFreeMode}
       breakpoints={{
         640: {

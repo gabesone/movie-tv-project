@@ -9,7 +9,7 @@ import { useEffect, useState } from "react";
 
 import { PosterTvLink } from "./Images";
 
-function CarouselTv({ mediaData }) {
+function CarouselTv({ mediaData, children }) {
   const [isNav, setIsNav] = useState(true);
   const [isFreeMode, setIsFreeMode] = useState(true);
 
@@ -61,16 +61,16 @@ function CarouselTv({ mediaData }) {
       }}
       className="px-4 text-gray-100 md:px-8 lg:px-14"
     >
-      {mediaData?.results?.map((poster) => (
-        <SwiperSlide className="my-2" key={poster.id}>
-          <PosterTvLink
-            posterId={poster.id}
-            posterName={poster.title ? poster.title : poster.name}
-            posterPath={poster.poster_path}
-            posterRating={poster.vote_average}
-          />
-        </SwiperSlide>
-      ))}
+      <SwiperSlide className="">
+        <PosterTvLink
+          // posterId={poster.id}
+          // posterName={poster.title ? poster.title : poster.name}
+          // posterPath={poster.poster_path}
+          // posterRating={poster.vote_average}
+          poster={mediaData}
+        />
+        {children}
+      </SwiperSlide>
     </Swiper>
   );
 }
