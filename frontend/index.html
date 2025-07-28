@@ -9,8 +9,16 @@
     />
     <title>My Films</title>
     <link rel="shortcut icon" href="my-films.svg" type="image/x-icon" />
+    <link rel="manifest" href="myfilms.webmanifest" />
+    <link rel="script" href="main.js" />
+    <script>
+      if ("serviceWorker" in navigator) {
+        navigator.serviceWorker.register("sw.js");
+      }
+    </script>
   </head>
   <body>
+    <button id="install" hidden style="color: white">Install</button>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>
